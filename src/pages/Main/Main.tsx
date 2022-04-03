@@ -7,14 +7,15 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import styles from "./Main.module.css"
 import ChatStore from "../../stores/main.store";
-import ChatList from "./ChatList/ChatCard";
+import ChatList from "./ChatList/ChatList";
 import {Chat} from "../../types";
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 import {observer} from "mobx-react";
+import {CustomDragLayer} from "./CustomDragLayer/CustomDragLayer";
 
 const Main = observer(() => {
-    useEffect(() => {
-        ChatStore.fetchChats()
-    }, [ChatStore])
+
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -34,7 +35,10 @@ const Main = observer(() => {
                     <Button color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>
-            <ChatList chats={ChatStore.chatArray} />
+            <DndProvider backend={HTML5Backend}>
+                <ChatList />
+                <CustomDragLayer />
+            </DndProvider>
         </Box>
     );
 });

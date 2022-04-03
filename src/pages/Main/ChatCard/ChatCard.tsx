@@ -6,21 +6,24 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import styles from "./ChatCard.module.css"
 import {Chat, LastMessage} from "../../../types";
+import ChatStore from "../../../stores/main.store";
 
+function ChatCard({id}: {id: number | string}) {
+    // @ts-ignore
+    const {title, lastMessages} = ChatStore.chatArray[id];
 
-function ChatCard({title, lastMessages}: Chat) {
     return (
         <Card sx={{ minWidth: 275 }}>
             <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                <Typography  color="text.secondary" gutterBottom variant="h5">
                     {title}
                 </Typography>
-                {lastMessages && lastMessages.map((lastMessage) =>
-                    <div className={styles['ChatCard-message']}>
-                        <Typography variant="h5" component="div">
+                {lastMessages && lastMessages.map((lastMessage: LastMessage) =>
+                    <div className={styles['ChatCard-message']} key={lastMessage.message}>
+                        <Typography  component="div">
                             {lastMessage.sender}
                         </Typography>
-                        <Typography variant="h5" component="div">
+                        <Typography component="div">
                             {lastMessage.message}
                         </Typography>
                     </div>

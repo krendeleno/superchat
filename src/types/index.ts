@@ -4,10 +4,14 @@ export type LastMessage = {
 }
 
 export type Chat = {
-    id: number,
+    id: number | string,
     title: string,
     ttl: number,
     tags: string[],
     creator: string,
     lastMessages: LastMessage[]
+}
+
+export type ChatMap = {
+    [id: string | number]: Omit<Chat, 'id'> & { top: number; left: number; }
 }
