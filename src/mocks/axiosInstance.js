@@ -1,4 +1,4 @@
-import axios, {AxiosRequestConfig} from 'axios';
+import axios from 'axios';
 import AxiosMockAdapter from 'axios-mock-adapter';
 
 const axiosMockInstance = axios.create();
@@ -11,33 +11,35 @@ axiosMockAdapterInstance
     .reply(() => {
         const chats = [{
             id: 22,
-            title: 'wow',
+            title: 'Обсуждаем бэкенд',
             ttl: 12,
             tags: ['tag1', 'tag2'],
             creator: 'Kirill',
-            lastMessages: [{
-                sender: 'Kirill',
-                message: 'I am loh'
-            },
+            lastMessages: [
                 {
                     sender: 'Kirill',
-                    message: 'I am loh 2'
+                    message: 'Штош'
+                },
+                {
+                    sender: 'Kirill',
+                    message: '...'
                 }
             ]
         },
             {
                 id: 32,
-                title: 'Gde dizain',
+                title: 'Где дизайн??',
                 ttl: 12,
                 tags: ['tag1', 'tag2'],
                 creator: 'Kirill',
-                lastMessages: [{
-                    sender: 'Dana',
-                    message: 'I am loh'
-                },
+                lastMessages: [
+                    {
+                        sender: 'Dana',
+                        message: 'Он нам не нужен'
+                    },
                     {
                         sender: 'Vika',
-                        message: 'Ne znau'
+                        message: 'Ну да, ну да...'
                     }
                 ]
             }

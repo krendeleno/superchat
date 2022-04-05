@@ -1,16 +1,16 @@
-import {makeAutoObservable, action, runInAction} from "mobx"
+import {makeAutoObservable, runInAction} from "mobx"
 import axiosMockAdapterInstance from '../mocks/axiosInstance.js'
 import {Chat, ChatMap} from "../types";
-import _ from "lodash";
-import {useCallback} from "react";
-import update from "immutability-helper";
+import mapValues from "lodash/mapValues";
+import keyBy from "lodash/keyBy";
+
 
 function getRandomInt(max: number) {
     return Math.floor(Math.random() * max);
 }
 
 class ChatStore {
-    chatArray = <ChatMap>{};
+    chatArray = {} as ChatMap;
     state: "pending" | "done" | "error" = "pending"
 
     constructor() {
@@ -18,11 +18,11 @@ class ChatStore {
     }
 
     fetchChats() {
-        this.chatArray = <ChatMap>{};
+        this.chatArray ={} as ChatMap;
         axiosMockAdapterInstance.get(`/api/v1/chats`)
             .then(res =>
                 runInAction(() =>
-                    this.chatArray = _.mapValues(_.keyBy(res.data, 'id'), (chat: Chat) => ({
+                    this.chatArray = mapValues(keyBy(res.data, 'id'), (chat: Chat) => ({
                         ...chat,
                         top: getRandomInt(500),
                         left: getRandomInt(1000)
@@ -37,4 +37,4 @@ class ChatStore {
     }
 }
 
-export default new ChatStore;
+export default new ChatStore();

@@ -1,28 +1,16 @@
-import React, {useEffect, useRef} from "react";
+import React, {useEffect} from "react";
 import styles from "./ChatList.module.css"
 import {observer} from "mobx-react";
-import ChatCard from "../ChatCard/ChatCard";
-import {Chat} from "../../../types";
-import { CSSProperties, FC, useCallback, useState } from 'react'
 import { useDrop } from 'react-dnd'
-import { ItemTypes } from '../../../types/ItemTypes'
-import update from 'immutability-helper'
-import DraggableChatCard from "../DraggableChatCard/ChatCard";
-import _ from "lodash";
-import {observable} from "mobx";
-import ChatStore from "../../../stores/main.store";
+import { ItemTypes } from 'src/types/ItemTypes'
+import { DragItem } from 'src/types'
+import { DraggableChatCard } from "src/pages/Main/components/DraggableChatCard";
+import ChatStore from "src/stores/main.store";
 
-export interface DragItem {
-    id: number | string
-    type: string
-    left: number
-    top: number
-}
-
-const ChatList = observer(() => {
+export const ChatList = observer(() => {
     useEffect(() => {
         ChatStore.fetchChats()
-    }, [ChatStore])
+    }, [])
 
     const [, drop] = useDrop(
         () => ({
@@ -45,10 +33,8 @@ const ChatList = observer(() => {
     return (
         <div ref={drop} className={styles['ChatList']}>
             {Object.keys(ChatStore.chatArray).map((key) => (
-                <DraggableChatCard id={key} key={key} {...(ChatStore.chatArray[key] as { top: number; left: number; })} />
+                <DraggableChatCard id={key} key={key} {...ChatStore.chatArray[key]} />
             ))}
         </div>
     );
 });
-
-export default ChatList;

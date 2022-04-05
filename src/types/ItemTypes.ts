@@ -1,3 +1,4 @@
-export const ItemTypes = {
-    CHAT: 'chat',
+export enum ItemTypes {
+    CHAT =  'chat',
 }
+

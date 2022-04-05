@@ -5,11 +5,10 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import styles from "./ChatCard.module.css"
-import {Chat, LastMessage} from "../../../types";
-import ChatStore from "../../../stores/main.store";
+import {LastMessage} from "src/types";
+import ChatStore from "src/stores/main.store";
 
-function ChatCard({id}: {id: number | string}) {
-    // @ts-ignore
+export function ChatCard({id}: {id: number | string}) {
     const {title, lastMessages} = ChatStore.chatArray[id];
 
     return (
@@ -36,5 +35,3 @@ function ChatCard({id}: {id: number | string}) {
         </Card>
     );
 }
-
-export default ChatCard;

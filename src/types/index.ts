@@ -15,3 +15,10 @@ export type Chat = {
 export type ChatMap = {
     [id: string | number]: Omit<Chat, 'id'> & { top: number; left: number; }
 }
+
+export interface DragItem {
+    id: number | string
+    type: string
+    left: number
+    top: number
+}
