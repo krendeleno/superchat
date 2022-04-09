@@ -2,10 +2,10 @@ import React from "react";
 import { ChatCard } from "src/pages/Main/components/ChatCard";
 import { FC, memo, useEffect } from "react";
 import { useDrag, DragSourceMonitor } from "react-dnd";
-import { ItemTypes } from "src/types/ItemTypes";
+import { ItemTypes } from "src/shared/types/ItemTypes";
 import { getEmptyImage } from "react-dnd-html5-backend";
 import { getStyles } from "./DraggableChatCard.helpers";
-import { DragItem } from "src/types";
+import { DragItem } from "src/shared/types";
 
 export const DraggableChatCard: FC<Omit<DragItem, "type">> = memo(
   function DraggableBox({ id, left, top }) {

@@ -13,7 +13,7 @@ import { CustomDragLayer } from "src/pages/Main/components/CustomDragLayer/";
 
 export const Main = observer(() => {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -29,10 +29,13 @@ export const Main = observer(() => {
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
-      <DndProvider backend={HTML5Backend}>
-        <ChatList />
-        <CustomDragLayer />
-      </DndProvider>
+        <Box sx={{flex: 1}}>
+            <DndProvider backend={HTML5Backend}>
+                <ChatList />
+                <CustomDragLayer />
+            </DndProvider>
+        </Box>
+
     </Box>
   );
 });

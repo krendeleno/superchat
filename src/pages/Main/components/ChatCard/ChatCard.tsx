@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import styles from "./ChatCard.module.css";
-import { LastMessage } from "src/types";
+import { LastMessage } from "src/shared/types";
 import ChatStore from "src/stores/main.store";
 
 export function ChatCard({ id }: { id: number | string }) {

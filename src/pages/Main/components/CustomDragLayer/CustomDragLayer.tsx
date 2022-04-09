@@ -1,7 +1,7 @@
 import { useDragLayer } from "react-dnd";
 import styles from "./CustomDragLayer.module.css";
 import { getItemStyles } from "./CustomDragLayer.helpers";
-import { ItemTypes } from "src/types/ItemTypes";
+import { ItemTypes } from "src/shared/types/ItemTypes";
 import { ChatDragPreview } from "src/pages/Main/components/ChatDragPreview";
 
 export const CustomDragLayer = () => {

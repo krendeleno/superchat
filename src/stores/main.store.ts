@@ -1,6 +1,6 @@
 import { makeAutoObservable, runInAction } from "mobx";
-import axiosMockAdapterInstance from "../mocks/axiosInstance.js";
-import { Chat, ChatMap } from "../types";
+import axiosMockAdapterInstance from "src/shared/mocks/axiosInstance.js";
+import { Chat, ChatMap } from "src/shared/types";
 import mapValues from "lodash/mapValues";
 import keyBy from "lodash/keyBy";
 

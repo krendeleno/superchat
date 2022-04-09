@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import styles from "./ChatList.module.css";
 import { observer } from "mobx-react";
 import { useDrop } from "react-dnd";
-import { ItemTypes } from "src/types/ItemTypes";
-import { DragItem } from "src/types";
+import { ItemTypes } from "src/shared/types/ItemTypes";
+import { DragItem } from "src/shared/types";
 import { DraggableChatCard } from "src/pages/Main/components/DraggableChatCard";
 import ChatStore from "src/stores/main.store";
 
