@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import { ChatList } from "src/pages/Main/components/ChatList/";
+import { TagList } from "src/pages/Main/components/TagList/";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { observer } from "mobx-react";
@@ -29,6 +30,7 @@ export const Main = observer(() => {
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
+      <TagList />
         <Box sx={{flex: 1}}>
             <DndProvider backend={HTML5Backend}>
                 <ChatList />

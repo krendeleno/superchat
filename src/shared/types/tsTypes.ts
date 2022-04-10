@@ -7,7 +7,7 @@ export type Chat = {
     id: number | string;
     title: string;
     ttl: number;
-    tags: string[];
+    tags: any;
     creator: string;
     lastMessages: LastMessage[];
 };

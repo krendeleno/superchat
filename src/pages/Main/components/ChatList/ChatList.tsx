@@ -12,6 +12,14 @@ export const ChatList = observer(() => {
     ChatStore.fetchChats();
   }, []);
 
+  const checkTags = (chatTags: Set<string>, selectedTags: Set<string>) => {
+    for (let tag of Array.from(chatTags)) {
+      if (selectedTags.has(tag))
+        return true;
+    }
+    return false;
+  }
+
   const [, drop] = useDrop(
     () => ({
       accept: ItemTypes.CHAT,
@@ -32,7 +40,9 @@ export const ChatList = observer(() => {
   );
   return (
     <div ref={drop} className={styles["ChatList"]}>
-      {Object.keys(ChatStore.chatArray).map((key) => (
+      {Object.keys(ChatStore.chatArray)
+        .filter(id => ChatStore.selectedTags.size === 0 || checkTags(ChatStore.chatArray[id].tags, ChatStore.selectedTags))
+        .map((key) => (
         <DraggableChatCard id={key} key={key} {...ChatStore.chatArray[key]} />
       ))}
     </div>

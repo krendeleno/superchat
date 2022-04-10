@@ -6,10 +6,11 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import styles from "./ChatCard.module.css";
 import { LastMessage } from "src/shared/types";
+import { Tag } from "src/shared/components/Tag";
 import ChatStore from "src/stores/main.store";
 
 export function ChatCard({ id }: { id: number | string }) {
-  const { title, lastMessages } = ChatStore.chatArray[id];
+  const { title, lastMessages, tags } = ChatStore.chatArray[id];
 
   return (
     <Card sx={{ minWidth: 275 }}>
@@ -17,6 +18,9 @@ export function ChatCard({ id }: { id: number | string }) {
         <Typography color="text.secondary" gutterBottom variant="h5">
           {title}
         </Typography>
+        <span className={styles['ChatCard-TagList']}>
+          {tags.size !== 0 && [...tags.keys()].map((tag: string) => <Tag key={tag} tag={tag}/>)}
+        </span>
         {lastMessages &&
           lastMessages.map((lastMessage: LastMessage) => (
             <div

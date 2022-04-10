@@ -32,7 +32,7 @@ axiosMockAdapterInstance.onGet("/api/v1/chats").reply(() => {
       id: 32,
       title: "Где дизайн??",
       ttl: 12,
-      tags: ["tag1", "tag2"],
+      tags: ["tag3", "tag2"],
       creator: "Kirill",
       lastMessages: [
         {
@@ -48,4 +48,12 @@ axiosMockAdapterInstance.onGet("/api/v1/chats").reply(() => {
   ];
 
   return [200, chats];
+});
+
+axiosMockAdapterInstance.onGet("/api/v1/tags").reply(() => {
+  const tags = [
+    'tag1', 'tag2', 'tag3', 'tag4'
+  ];
+
+  return [200, tags];
 });
