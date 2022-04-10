@@ -5,7 +5,7 @@ import { Main } from "./pages/Main";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="superchat">
       <Routes>
         <Route path="/" element={<Main />} />
       </Routes>
