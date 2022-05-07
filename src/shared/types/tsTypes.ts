@@ -9,6 +9,7 @@ export type Chat = {
     ttl: number;
     tags: any;
     creator: string;
+    color: string;
     lastMessages: LastMessage[];
 };
 

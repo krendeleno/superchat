@@ -10,10 +10,10 @@ import { Tag } from "src/shared/components/Tag";
 import ChatStore from "src/stores/main.store";
 
 export function ChatCard({ id }: { id: number | string }) {
-  const { title, lastMessages, tags } = ChatStore.chatArray[id];
+  const { title, lastMessages, tags, color } = ChatStore.chatArray[id];
 
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card sx={{ minWidth: 275, backgroundColor: color }}>
       <CardContent>
         <Typography color="text.secondary" gutterBottom variant="h5">
           {title}
