@@ -15,7 +15,7 @@ axiosMockAdapterInstance.onGet("/api/v1/chats").reply(() => {
       id: 22,
       title: "Обсуждаем бэкенд",
       ttl: 12,
-      color: "#eb4034",
+      color: "blue",
       tags: ["tag1", "tag2"],
       creator: "Kirill",
       lastMessages: [
@@ -33,7 +33,7 @@ axiosMockAdapterInstance.onGet("/api/v1/chats").reply(() => {
       id: 32,
       title: "Где дизайн??",
       ttl: 12,
-      color: "#9fd1ff",
+      color: "red",
       tags: ["tag3", "tag2"],
       creator: "Kirill",
       lastMessages: [

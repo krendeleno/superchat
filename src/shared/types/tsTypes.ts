@@ -3,13 +3,15 @@ export type LastMessage = {
     message: string;
 };
 
+export type ThemeColors =  "blue" | "red" | "yellow" | "green"
+
 export type Chat = {
     id: number | string;
     title: string;
     ttl: number;
     tags: any;
     creator: string;
-    color: string;
+    color: ThemeColors;
     lastMessages: LastMessage[];
 };
 

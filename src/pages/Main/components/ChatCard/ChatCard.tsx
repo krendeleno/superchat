@@ -21,7 +21,7 @@ export function ChatCard({ id }: { id: number | string }) {
           {title}
         </Typography>
         <span className={styles['ChatCard-TagList']}>
-          {tags.size !== 0 && [...tags.keys()].map((tag: string) => <Tag key={tag} tag={tag}/>)}
+          {tags.size !== 0 && [...tags.keys()].map((tag: string) => <Tag key={tag} tag={tag} color={color} small/>)}
         </span>
         {lastMessages &&
           lastMessages.map((lastMessage: LastMessage) => (

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Manrope:wght@400;500;700;800&display=swap');
+
 .App {
   text-align: center;
   height: 100vh;
@@ -7,4 +9,16 @@ body, html, #root {
   margin: 0;
   padding:0;
   height: 100%;
+}
+
+:root {
+  --font-caveat: 'Caveat', cursive;
+  --font-manrope: 'Manrope', sans-serif;
+
+  --black: #414141;
+  --white: #FFFFFF;
+
+  --tag-active: var(--black);
+  --tag-default: var(--white);
+  --tag-border-radius: 14px;
 }
