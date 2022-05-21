@@ -1,5 +1,7 @@
 import { memo } from "react";
+
 import { ChatCard } from "src/pages/Main/components/ChatCard";
+
 import styles from "./ChatDragPreview.module.css";
 
 export const ChatDragPreview = memo(function ChatDragPreview({

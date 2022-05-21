@@ -4,10 +4,12 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import styles from "./ChatCard.module.css";
+
 import { LastMessage } from "src/shared/types";
 import { Tag } from "src/shared/components/Tag";
 import ChatStore from "src/stores/main.store";
+
+import styles from "./ChatCard.module.css";
 
 export function ChatCard({ id }: { id: number | string }) {
   const { title, lastMessages, tags, color } = ChatStore.chatArray[id];

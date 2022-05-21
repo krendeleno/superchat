@@ -1,9 +1,11 @@
 import React, { useEffect, useCallback } from "react";
-import styles from "./TagList.module.css";
 import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import ChatStore from "src/stores/main.store";
 import { observer } from "mobx-react";
+import ButtonGroup from '@mui/material/ButtonGroup';
+
+import ChatStore from "src/stores/main.store";
+
+import styles from "./TagList.module.css";
 
 export const TagList= observer(()  => {
   useEffect(() => {

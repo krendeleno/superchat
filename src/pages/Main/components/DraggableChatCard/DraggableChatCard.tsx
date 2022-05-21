@@ -1,11 +1,13 @@
 import React from "react";
-import { ChatCard } from "src/pages/Main/components/ChatCard";
 import { FC, memo, useEffect } from "react";
 import { useDrag, DragSourceMonitor } from "react-dnd";
-import { ItemTypes } from "src/shared/types/ItemTypes";
 import { getEmptyImage } from "react-dnd-html5-backend";
-import { getStyles } from "./DraggableChatCard.helpers";
+
+import { ChatCard } from "src/pages/Main/components/ChatCard";
+import { ItemTypes } from "src/shared/types/ItemTypes";
 import { DragItem } from "src/shared/types";
+
+import { getStyles } from "./DraggableChatCard.helpers";
 
 export const DraggableChatCard: FC<Omit<DragItem, "type">> = memo(
   function DraggableBox({ id, left, top }) {

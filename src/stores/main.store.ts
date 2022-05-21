@@ -1,8 +1,9 @@
 import { makeAutoObservable, runInAction } from "mobx";
-import axiosMockAdapterInstance from "src/shared/mocks/axiosInstance.js";
-import { Chat, ChatMap } from "src/shared/types";
 import mapValues from "lodash/mapValues";
 import keyBy from "lodash/keyBy";
+
+import axiosMockAdapterInstance from "src/shared/mocks/axiosInstance.js";
+import { Chat, ChatMap } from "src/shared/types";
 
 function getRandomInt(max: number) {
   return Math.floor(Math.random() * max);
@@ -13,6 +14,9 @@ class ChatStore {
   selectedTags: Set<string> = new Set();
   tagArray: Set<string> = new Set();
   state: "pending" | "done" | "error" = "pending";
+  userWidth: number = 0;
+  chatWidth: number = 0;
+  chatHeight: number = 0;
 
   constructor() {
     makeAutoObservable(this);
@@ -52,8 +56,6 @@ class ChatStore {
       this.selectedTags.delete(tag);
     else
       this.selectedTags.add(tag)
-
-    console.log(this.selectedTags)
   }
 }
 
