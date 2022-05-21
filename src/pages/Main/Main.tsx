@@ -8,12 +8,14 @@ import { CustomDragLayer } from "src/pages/Main/components/CustomDragLayer/";
 import { ChatList } from "src/pages/Main/components/ChatList/";
 import { TagList } from "src/pages/Main/components/TagList/";
 import { Header } from "src/pages/Main/components/Header";
+import { AddChatButton } from "src/pages/Main/components/AddChatButton";
 
 export const Main = observer(() => {
   return (
     <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       <Header />
       <TagList />
+      <AddChatButton />
         <Box sx={{flex: 1}}>
             <DndProvider backend={HTML5Backend}>
                 <ChatList />

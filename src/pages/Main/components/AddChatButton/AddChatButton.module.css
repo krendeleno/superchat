@@ -1,0 +1,16 @@
+.AddChatButton {
+    position: fixed;
+    bottom: 90px;
+    right: 0;
+
+    background-color: var(--black);
+    padding: 16px 6px;
+    border-radius: 43px 0 0 43px;
+}
+
+.AddChatButton-Text {
+    font-family: var(--font-manrope);
+    font-size: 21px;
+    font-weight: var(--font-weight-manrope-bold);
+    color: white;
+}
