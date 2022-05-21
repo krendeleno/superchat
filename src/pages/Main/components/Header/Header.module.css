@@ -1,0 +1,16 @@
+.Header {
+    height: 46px;
+    background-color: var(--grey);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+}
+
+.Header-User {
+    font-family: var(--font-manrope);
+    font-size: 20px;
+    font-weight: var(--font-weight-manrope-bold);
+    color: white;
+}

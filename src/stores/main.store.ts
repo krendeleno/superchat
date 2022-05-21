@@ -10,6 +10,7 @@ function getRandomInt(max: number) {
 }
 
 class ChatStore {
+  user: string = "krendeleno";
   chatArray = {} as ChatMap;
   selectedTags: Set<string> = new Set();
   tagArray: Set<string> = new Set();
