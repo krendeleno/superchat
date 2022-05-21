@@ -4,8 +4,13 @@
     right: 0;
 
     background-color: var(--black);
-    padding: 16px 6px;
+    padding: 16px;
     border-radius: 43px 0 0 43px;
+
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
 }
 
 .AddChatButton-Text {
