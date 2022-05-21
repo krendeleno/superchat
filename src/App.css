@@ -14,6 +14,10 @@ body, html, #root {
 :root {
   --font-caveat: 'Caveat', cursive;
   --font-manrope: 'Manrope', sans-serif;
+  --font-weight-manrope-semibold: 600;
+  --font-weight-manrope-bold: 700;
+  --font-weight-manrope-regular: 400;
+  --font-weight-manrope-extrabold: 800;
 
   --black: #414141;
   --white: #FFFFFF;
@@ -21,4 +25,7 @@ body, html, #root {
   --tag-active: var(--black);
   --tag-default: var(--white);
   --tag-border-radius: 14px;
+
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  --shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 }

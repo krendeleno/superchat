@@ -1,42 +1,38 @@
 import React from "react";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 
 import { LastMessage } from "src/shared/types";
 import { Tag } from "src/shared/components/Tag";
 import ChatStore from "src/stores/main.store";
+import { themes } from "src/shared/constants";
 
 import styles from "./ChatCard.module.css";
 
 export function ChatCard({ id }: { id: number | string }) {
-  const { title, lastMessages, tags, color } = ChatStore.chatArray[id];
+  const { title, lastMessages, tags, color, creator } = ChatStore.chatArray[id];
 
   return (
-    <Card sx={{ minWidth: 275, backgroundColor: color }}>
-      <CardContent>
-        <Typography color="text.secondary" gutterBottom variant="h5">
-          {title}
-        </Typography>
-        <span className={styles['ChatCard-TagList']}>
-          {tags.size !== 0 && [...tags.keys()].map((tag: string) => <Tag key={tag} tag={tag} color={color} small/>)}
-        </span>
-        {lastMessages &&
+    <div className={styles["ChatCard"]} style={{backgroundColor: themes[color].primary}}>
+      <span className={styles["ChatCard-Title"]}>
+        {title}
+      </span>
+      <div className={styles["ChatCard-Content"]} style={{border: `${themes[color].secondary} 2px dashed`}}>
+        {tags.size !== 0 && <span className={styles['ChatCard-TagList']}>
+          {[...tags.keys()].map((tag: string) => <Tag className={styles['ChatCard-Tag']} key={tag} tag={tag} color={color} small/>)}
+        </span>}
+        <span className={styles["ChatCard-Creator"]}>{creator}</span>
+        {lastMessages.length &&
           lastMessages.map((lastMessage: LastMessage) => (
             <div
-              className={styles["ChatCard-message"]}
+              className={styles["ChatCard-Message"]}
               key={lastMessage.message}
             >
-              <Typography component="div">{lastMessage.sender}</Typography>
-              <Typography component="div">{lastMessage.message}</Typography>
+              <span>{lastMessage.sender}: {lastMessage.message}</span>
             </div>
           ))}
-      </CardContent>
-      <CardActions>
-        <Button size="small">Открыть чат</Button>
-      </CardActions>
-    </Card>
+        <div className={styles['ChatCard-Open']}
+             style={{color: themes[color].secondary}}
+        >открыть чат</div>
+      </div>
+    </div>
   );
 }

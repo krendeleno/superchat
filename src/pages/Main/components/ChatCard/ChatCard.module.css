@@ -1,12 +1,68 @@
-.ChatCard-message {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
 .ChatCard-TagList {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 5px;
+}
+
+.ChatCard-Content {
+  padding: 9px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: flex-start;
+}
+
+.ChatCard {
+  width: 380px;
+  box-shadow: var(--shadow);
+  border-radius: 20px;
+  padding: 0 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  cursor: grab;
+}
+
+.ChatCard-Title {
+  font-family: var(--font-manrope);
+  font-size: 18px;
+  font-weight: var(--font-weight-manrope-bold);
+  color: var(--black);
+  margin-top: 7px;
+}
+
+.ChatCard-Creator {
+  font-family: var(--font-manrope);
+  font-weight: var(--font-weight-manrope-bold);
+  font-size: 11px;
+}
+
+.ChatCard-Open {
+  align-self: flex-end;
+
+  font-family: var(--font-manrope);
+  font-size: 14px;
+  font-weight: var(--font-weight-manrope-extrabold);
+
+  border-radius: 10px;
+  background-color: var(--white);
+  padding: 4px;
+  cursor: pointer;
+}
+
+.ChatCard-Message {
+  width: 100%;
+  font-family: var(--font-manrope);
+  font-weight: var(--font-weight-manrope-regular);
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.ChatCard-Tag {
+  cursor: default;
 }
