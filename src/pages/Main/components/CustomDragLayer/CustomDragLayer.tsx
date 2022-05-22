@@ -2,7 +2,6 @@ import { useDragLayer } from "react-dnd";
 
 import { ItemTypes } from "src/shared/types/ItemTypes";
 import { ChatDragPreview } from "src/pages/Main/components/ChatDragPreview";
-import { ChatInfoDragPreview } from "src/pages/Main/components/ChatInfoDragPreview";
 
 import { getItemStyles } from "./CustomDragLayer.helpers";
 
@@ -27,8 +26,6 @@ export const CustomDragLayer = () => {
     switch (itemType) {
       case ItemTypes.CHAT:
         return <ChatDragPreview id={item.id} />;
-      case ItemTypes.CHAT_INFO:
-        return <ChatInfoDragPreview id={item.id} />;
       default:
         return null;
     }

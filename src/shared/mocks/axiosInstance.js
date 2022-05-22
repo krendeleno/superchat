@@ -33,7 +33,7 @@ axiosMockAdapterInstance.onGet("/api/v1/chats").reply(() => {
     },
     {
       id: 32,
-      title: "Где дизайн??",
+      title: "Какое-то очень-очень длинное название чата",
       ttl: 12,
       color: "red",
       tags: ["tag3", "tag2"],
@@ -67,6 +67,65 @@ axiosMockAdapterInstance.onGet("/api/v1/tags").reply(() => {
 
 axiosMockAdapterInstance.onGet("/api/v1/chats/1/messages").reply(() => {
   const chatMessages = [
+    {
+      sender: "Vika",
+      message: "Очень длинное сообщение Очень длинное сообщение Очень длинное сообщение",
+      sentAt: "123"
+    },
+    {
+      sender: "Vika",
+      message: "Ну да, ну да...",
+      sentAt: "1232"
+    },
+    {
+      sender: "Vika",
+      message: "Ну да, ну да...",
+      sentAt: "1233"
+    },
+    {
+      sender: "Vika",
+      message: "Ну да, ну да...",
+      sentAt: "1235"
+    },    {
+      sender: "Vika",
+      message: "Ну да, ну да...",
+      sentAt: "123"
+    },
+    {
+      sender: "Vika",
+      message: "Ну да, ну да...",
+      sentAt: "1232"
+    },
+    {
+      sender: "Vika",
+      message: "Ну да, ну да...",
+      sentAt: "1233"
+    },
+    {
+      sender: "Vika",
+      message: "Ну да, ну да...",
+      sentAt: "1235"
+    },
+    {
+      sender: "Vika",
+      message: "Ну да, ну да...",
+      sentAt: "123"
+    },
+    {
+      sender: "Vika",
+      message: "Ну да, ну да...",
+      sentAt: "1232"
+    },
+    {
+      sender: "Vika",
+      message: "Ну да, ну да...",
+      sentAt: "1233"
+    },
+    {
+      sender: "Vika",
+      message: "Ну да, ну да...",
+      sentAt: "1235"
+    },
     {
       sender: "Vika",
       message: "Ну да, ну да...",

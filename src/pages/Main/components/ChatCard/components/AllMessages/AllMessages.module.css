@@ -1,0 +1,15 @@
+.AllMessages-Message {
+    width: 100%;
+    font-family: var(--font-manrope);
+    font-weight: var(--font-weight-manrope-regular);
+
+    overflow-wrap: break-word;
+}
+
+.AllMessages-List {
+    max-height: 315px;
+    overflow-y: auto;
+    overflow-x: auto;
+    width: 100%;
+    scrollbar-width: thin;
+}

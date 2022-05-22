@@ -33,7 +33,7 @@ class ChatStore {
   fetchChatMessages(id: number | string) {
     axiosMockAdapterInstance.get(`/api/v1/chats/1/messages`).then(res => {
       runInAction(
-        () => this.openChatsMessages[id] = { messages: res.data, top: this.chatArray[id].top - 50, left:  this.chatArray[id].left + 100}
+        () => this.openChatsMessages[id] = res.data
       )
     })
   }
@@ -48,19 +48,19 @@ class ChatStore {
             tags: new Set(chat.tags),
             top: getRandomInt(500),
             left: getRandomInt(1000),
+            isOpen: false
           })) as unknown as ChatMap)
       )
     );
   }
 
+  setIsOpen(id: string | number, state: boolean) {
+    this.chatArray[id].isOpen = state;
+  }
+
   moveBox(id: string | number, left: number, top: number) {
     this.chatArray[id].left = left;
     this.chatArray[id].top = top;
-  }
-
-  moveChatInfoBox(id: string | number, left: number, top: number) {
-    this.openChatsMessages[id].left = left;
-    this.openChatsMessages[id].top = top;
   }
 
   changeTags(tag: string) {

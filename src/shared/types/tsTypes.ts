@@ -17,11 +17,11 @@ export type Chat = {
 };
 
 export type ChatMap = {
-    [id: string | number]: Omit<Chat, "id"> & { top: number; left: number };
+    [id: string | number]: Omit<Chat, "id"> & { top: number; left: number, isOpen: boolean };
 };
 
 export type ChatMessages = {
-    [id: string | number]: { messages: Message[], top: number; left: number };
+    [id: string | number]: Message[];
 }
 
 export interface DragItem {
