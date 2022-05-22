@@ -7,6 +7,7 @@ export type ButtonProps = {
   onClick?: () => void,
   children: ReactElement<any, any>,
   type?: "button" | "submit" | "reset",
+  style?: any
 }
 
 export const Button = ({ children, onClick, className, ...rest }: ButtonProps) => {

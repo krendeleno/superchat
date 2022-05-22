@@ -3,7 +3,7 @@ import mapValues from "lodash/mapValues";
 import keyBy from "lodash/keyBy";
 
 import axiosMockAdapterInstance from "src/shared/mocks/axiosInstance.js";
-import { Chat, ChatMap } from "src/shared/types";
+import { Chat, ChatMap, ChatMessages } from "src/shared/types";
 
 function getRandomInt(max: number) {
   return Math.floor(Math.random() * max);
@@ -15,9 +15,7 @@ class ChatStore {
   selectedTags: Set<string> = new Set();
   tagArray: Set<string> = new Set();
   state: "pending" | "done" | "error" = "pending";
-  userWidth: number = 0;
-  chatWidth: number = 0;
-  chatHeight: number = 0;
+  openChatsMessages: ChatMessages = {}
 
   constructor() {
     makeAutoObservable(this);
@@ -28,6 +26,14 @@ class ChatStore {
     axiosMockAdapterInstance.get(`/api/v1/tags`).then(res => {
       runInAction(
         () => this.tagArray = new Set(res.data)
+      )
+    })
+  }
+
+  fetchChatMessages(id: number | string) {
+    axiosMockAdapterInstance.get(`/api/v1/chats/1/messages`).then(res => {
+      runInAction(
+        () => this.openChatsMessages[id] = { messages: res.data, top: this.chatArray[id].top - 50, left:  this.chatArray[id].left + 100}
       )
     })
   }
@@ -50,6 +56,11 @@ class ChatStore {
   moveBox(id: string | number, left: number, top: number) {
     this.chatArray[id].left = left;
     this.chatArray[id].top = top;
+  }
+
+  moveChatInfoBox(id: string | number, left: number, top: number) {
+    this.openChatsMessages[id].left = left;
+    this.openChatsMessages[id].top = top;
   }
 
   changeTags(tag: string) {

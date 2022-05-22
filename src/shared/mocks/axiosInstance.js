@@ -22,10 +22,12 @@ axiosMockAdapterInstance.onGet("/api/v1/chats").reply(() => {
         {
           sender: "Kirill",
           message: "Штош",
+          sentAt: "123"
         },
         {
           sender: "Kirill",
           message: "...",
+          sentAt: "123"
         },
       ],
     },
@@ -40,10 +42,12 @@ axiosMockAdapterInstance.onGet("/api/v1/chats").reply(() => {
         {
           sender: "Dana",
           message: "Он нам не нужен",
+          sentAt: "123"
         },
         {
           sender: "Vika",
           message: "Ну да, ну да...",
+          sentAt: "123"
         },
       ],
     },
@@ -58,4 +62,32 @@ axiosMockAdapterInstance.onGet("/api/v1/tags").reply(() => {
   ];
 
   return [200, tags];
+});
+
+
+axiosMockAdapterInstance.onGet("/api/v1/chats/1/messages").reply(() => {
+  const chatMessages = [
+    {
+      sender: "Vika",
+      message: "Ну да, ну да...",
+      sentAt: "123"
+    },
+    {
+      sender: "Vika",
+      message: "Ну да, ну да...",
+      sentAt: "1232"
+    },
+    {
+      sender: "Vika",
+      message: "Ну да, ну да...",
+      sentAt: "1233"
+    },
+    {
+      sender: "Vika",
+      message: "Ну да, ну да...",
+      sentAt: "1235"
+    }
+  ];
+
+  return [200, chatMessages];
 });

@@ -8,6 +8,7 @@ import { DraggableChatCard } from "src/pages/Main/components/DraggableChatCard";
 import ChatStore from "src/stores/main.store";
 
 import styles from "./ChatList.module.css";
+import { DraggableChatInfoCard } from "src/pages/Main/components/DraggableChatInfoCard";
 
 export const ChatList = observer(() => {
   useEffect(() => {
@@ -24,7 +25,7 @@ export const ChatList = observer(() => {
 
   const [, drop] = useDrop(
     () => ({
-      accept: ItemTypes.CHAT,
+      accept: [ItemTypes.CHAT, ItemTypes.CHAT_INFO],
       drop(item: DragItem, monitor) {
         const delta = monitor.getDifferenceFromInitialOffset() as {
           x: number;
@@ -34,7 +35,9 @@ export const ChatList = observer(() => {
         let left = Math.round(item.left + delta.x);
         let top = Math.round(item.top + delta.y);
 
-        ChatStore.moveBox(item.id, left, top);
+        const type = monitor.getItemType()
+
+        type === ItemTypes.CHAT ? ChatStore.moveBox(item.id, left, top) : ChatStore.moveChatInfoBox(item.id, left, top)
         return undefined;
       },
     }),
@@ -47,6 +50,10 @@ export const ChatList = observer(() => {
         .map((key) => (
         <DraggableChatCard id={key} key={key} {...ChatStore.chatArray[key]} />
       ))}
+      {Object.keys(ChatStore.openChatsMessages)
+        .map((key) => (
+          <DraggableChatInfoCard id={key} key={key} {...ChatStore.openChatsMessages[key]} />
+        ))}
     </div>
   );
 });
