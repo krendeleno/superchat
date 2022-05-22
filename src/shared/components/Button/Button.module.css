@@ -1,0 +1,10 @@
+.Button {
+  border-radius: 13px;
+  cursor: pointer;
+
+  font-weight: var(--font-weight-manrope-extrabold);
+  font-family: var(--font-manrope);
+
+  text-decoration: none;
+  border: none;
+}

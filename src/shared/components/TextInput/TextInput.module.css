@@ -1,0 +1,20 @@
+.TextInput {
+  border: none;
+  border-bottom: 1px solid var(--black);
+
+  width: 100%;
+
+  font-family: var(--font-manrope);
+}
+
+.TextInput:focus {
+  outline: none !important;
+}
+
+.TextInput::placeholder {
+  font-family: var(--font-manrope);
+}
+
+.TextInput-Error {
+  color: var(--error);
+}

@@ -1,0 +1,108 @@
+.FormCreateChat-ModalLayout {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.FormCreateChat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 380px;
+    background-color: var(--white);
+
+    border-radius: 20px;
+
+
+}
+
+.FormCreateChat-Icon {
+    cursor: pointer;
+    margin: 14px 14px 0 0;
+
+    align-self: flex-end;
+}
+
+.FormCreateChat-ButtonAdd {
+    background-color: var(--black);
+    padding: 7px 13px;
+    width: fit-content;
+    margin-bottom: 16px;
+}
+
+.FormCreateChat-ButtonAddText {
+    color: white;
+
+    font-size: 16px;
+}
+
+.FormCreateChat-Content {
+    font-family: var(--font-manrope);
+    font-weight: var(--font-weight-manrope-regular);
+
+    border: 2px dashed var(--grey);
+    border-radius: 16px;
+    margin: 16px;
+
+    padding: 19px 24px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    width: calc(100% - 32px);
+    box-sizing: border-box;
+
+
+}
+
+.FormCreateChat-RadioButton {
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 1.1;
+}
+
+.FormCreateChat-Theme {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.FormCreateChat-SelectedTags {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    gap: 6px;
+}
+
+.FormCreateChat-AddTag {
+    display: flex;
+    flex-direction: row;
+
+    gap: 4px;
+}
+
+.FormCreateChat-AddTagInput {
+    border: 1px var(--grey) solid !important;
+    border-radius: 16px;
+
+    padding: 4px;
+}
+
+.FormCreateChat-AddTagButton {
+    color: white;
+    font-weight: var(--font-weight-manrope-bold) !important;
+    padding: 4px 7px;
+    background-color: var(--grey);
+}
