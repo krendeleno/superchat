@@ -3,10 +3,9 @@ import { observer } from "mobx-react";
 
 import { Message, ThemeColors } from "src/shared/types";
 import ChatStore from "src/stores/main.store";
-
-import styles from "./AllMessages.module.css";
 import { themes } from "src/shared/constants";
 
+import styles from "./AllMessages.module.css";
 
 export type AllMessagesProps = {
   id: number | string,

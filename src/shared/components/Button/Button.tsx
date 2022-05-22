@@ -4,7 +4,7 @@ import styles from "./Button.module.css";
 
 export type ButtonProps = {
   className?: string,
-  onClick?: () => void,
+  onClick?: (arg0: any) => void,
   children: ReactElement<any, any>,
   type?: "button" | "submit" | "reset",
   style?: any

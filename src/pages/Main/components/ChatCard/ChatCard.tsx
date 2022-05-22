@@ -4,12 +4,11 @@ import { Tag } from "src/shared/components/Tag";
 import ChatStore from "src/stores/main.store";
 import { themes } from "src/shared/constants";
 import { LastMessages } from "src/pages/Main/components/ChatCard/components/LastMessages";
-
-
-import styles from "./ChatCard.module.css";
 import { AllMessages } from "src/pages/Main/components/ChatCard/components/AllMessages";
 import { Button } from "src/shared/components/Button";
 import { Arrow } from "src/assets/icons";
+
+import styles from "./ChatCard.module.css";
 
 export function ChatCard({ id }: { id: number | string }) {
   const { title, tags, color, creator, isOpen } = ChatStore.chatArray[id];
@@ -40,7 +39,7 @@ export function ChatCard({ id }: { id: number | string }) {
 
         <span className={styles["ChatCard-Creator"]}>{creator}</span>
 
-        {isOpen ? <AllMessages color={color} id={id} /> : <LastMessages id={id} setOpen={handleOpenChat} />}
+        {isOpen ? <AllMessages color={color} id={id} /> : <LastMessages id={id} />}
 
         {!isOpen && <Button className={styles["ChatCard-Button"]}
                             style={{ color: themes[color].text }}

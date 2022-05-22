@@ -13,8 +13,15 @@
 
 .TextInput::placeholder {
   font-family: var(--font-manrope);
+  color: rgba(0, 0, 0, 0.3);
+  font-weight: var(--font-weight-manrope-semibold);
 }
 
 .TextInput-Error {
   color: var(--error);
+  font-family: var(--font-manrope);
+  font-size: 16px;
+
+  align-self: flex-start;
+  margin-top: -10px;
 }
