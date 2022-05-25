@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { observer } from "mobx-react";
 import { createPortal } from 'react-dom'
-import { Formik, Form } from 'formik';
+import { Formik, Form, FormikProps } from "formik";
 import * as Yup from 'yup';
 
 import { Cross } from "src/assets/icons";
@@ -25,6 +25,15 @@ export const FormCreateChat = observer(({ isOpen, setOpen }: FormCreateChatProps
     return <></>
   }
 
+  const handleAddInput = ({setValues, values, errors, setFieldTouched}:  FormikProps<any>) => {
+    if (!errors.tagsProvider) {
+      setValues({...values, tagsProvider: '', tags: [...values.tags, values.tagsProvider]});
+      setFieldTouched('tagsProvider', false);
+    }
+  }
+
+
+  // @ts-ignore
   return createPortal(
     <div className={styles['FormCreateChat-ModalLayout']}>
       <Formik
@@ -41,6 +50,13 @@ export const FormCreateChat = observer(({ isOpen, setOpen }: FormCreateChatProps
               'Не выбран цвет'
             )
             .required('Обязательное поле'),
+          tags: Yup.array(),
+          tagsProvider: Yup.string().ensure()
+            .min(3, 'Длина тега должна быть хотя бы 3 символа')
+            .transform((value) => !!value ? value : null)
+            .test('unique', 'Такой тег уже есть в вашем списке',
+              // @ts-ignore
+              (value, context) => !context.resolve(Yup.ref('tags')).includes(value))
         })}
       >
         {props => (
@@ -57,19 +73,18 @@ export const FormCreateChat = observer(({ isOpen, setOpen }: FormCreateChatProps
               </label>
               <span>теги:</span>
               <div className={styles['FormCreateChat-AddTag']}>
-                <TextInput className={styles['FormCreateChat-AddTagInput']} placeholder="введите тег" name="tagsProvider" type="text"/>
-                <Button type="button" className={styles['FormCreateChat-AddTagButton']} onClick={
-                  () => props.setValues(
-                    {...props.values,
-                      tagsProvider: '',
-                      // @ts-ignore
-                      tags: [...props.values.tags, props.values.tagsProvider]})}>
+                <TextInput className={styles['FormCreateChat-AddTagInput']}
+                           classNameError={styles['FormCreateChat-AddTagError']}
+                           placeholder="введите тег"
+                           name="tagsProvider"
+                           type="text"/>
+                <Button type="button" className={styles['FormCreateChat-AddTagButton']} onClick={() => handleAddInput(props)}>
                   <span>добавить</span>
                 </Button>
               </div>
               {Boolean(props.values.tags.length) &&
                 <div className={styles['FormCreateChat-SelectedTags']}>
-                  {props.values.tags.map(tag => <Tag key={tag} tag={tag} shadow
+                  {props.values.tags.map(tag => <Tag key={tag} tag={tag} shadow deletable
                                                      onClick={() =>
                                                        props.setValues({...props.values, tags: props.values.tags.filter(x => x!== tag)})}/>)}
                 </div>

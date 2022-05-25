@@ -23,9 +23,11 @@ body, html, #root {
   --white: #FFFFFF;
   --grey: #BAC1C7;
   --error: #e53838;
+  --red: #FFA8A8;
 
   --tag-active: var(--black);
   --tag-default: var(--white);
+  --tag-delete: var(--red);
   --tag-border-radius: 14px;
 
   /* offset-x | offset-y | blur-radius | spread-radius | color */
