@@ -32,10 +32,9 @@ export const FormCreateChat = observer(({ isOpen, setOpen }: FormCreateChatProps
     }
   }
 
-
   // @ts-ignore
   return createPortal(
-    <div className={styles['FormCreateChat-ModalLayout']}>
+    <div className={styles['FormCreateChat-ModalLayout']} onClick={() => setOpen(false)}>
       <Formik
         initialValues={{ title: '', colorTheme: "blue", tags: [], tagsProvider: '' }}
         onSubmit={(values, { setSubmitting }) => {

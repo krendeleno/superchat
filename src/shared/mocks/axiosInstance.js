@@ -26,7 +26,7 @@ axiosMockAdapterInstance.onGet("/api/v1/chats").reply(() => {
         },
         {
           sender: "Kirill",
-          message: "...",
+          message: "Очередное невероятно длинное сообщение",
           sentAt: "123"
         },
       ],

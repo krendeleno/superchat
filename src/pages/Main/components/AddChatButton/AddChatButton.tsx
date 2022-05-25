@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { observer } from "mobx-react";
 
 import { Plus } from "src/assets/icons";
@@ -12,6 +12,16 @@ export const AddChatButton = observer(()  => {
   const handleClick = () => {
     setOpen(true);
   }
+
+  useEffect(() => {
+    const closeModal = (event: KeyboardEvent) => {
+      if (event.key === 'Escape'){
+        setOpen(false)
+      }
+    }
+    window.addEventListener('keydown', closeModal)
+    return () => window.removeEventListener('keydown', closeModal)
+  },[])
 
   return (
     <>
