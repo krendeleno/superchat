@@ -59,7 +59,7 @@ export const FormCreateChat = observer(({ isOpen, setOpen }: FormCreateChatProps
         })}
       >
         {props => (
-          <Form className={styles['FormCreateChat']}>
+          <Form className={styles['FormCreateChat']} onClick={e => e.stopPropagation()}>
             <Cross onClick={() => setOpen(false)} className={styles['FormCreateChat-Icon']}/>
             <div className={styles['FormCreateChat-Content']}>
               <TextInput placeholder="название" name="title" type="text"/>

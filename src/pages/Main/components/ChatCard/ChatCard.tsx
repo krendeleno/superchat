@@ -47,7 +47,7 @@ export function ChatCard({ id }: { id: number | string }) {
         ><span>открыть чат</span></Button>}
       </div>
       {isOpen && <div className={styles['ChatCard-Send']}>
-        <textarea className={styles['ChatCard-Textarea']}
+        <textarea className={styles['ChatCard-Textarea']} onClick={e => e.stopPropagation()}
                   style={{
           border: `${themes[color].secondary} 2px dashed`, scrollbarColor: `${themes[color].secondary} rgba(255,255,255, 0.6)`}}/>
         <Arrow viewBox="0 0 24 24" className={styles['ChatCard-SendIcon']} />
