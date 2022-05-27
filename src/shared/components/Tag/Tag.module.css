@@ -17,6 +17,7 @@
 
 .Tag_text {
   margin: 2px 9px;
+  font-weight: bold;
 }
 
 .Tag_delete {
@@ -38,4 +39,5 @@
 .Tag_small {
   font-size: 16px;
   min-width: 52px;
+  padding: 0 4px;
 }

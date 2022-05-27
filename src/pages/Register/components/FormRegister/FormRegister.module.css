@@ -27,8 +27,9 @@
     align-self: flex-end;
 
     color: var(--black);
-    font-size: 14px;
+    font-size: 16px;
     font-family: var(--font-manrope);
+    font-weight: var(--font-weight-manrope-regular);
 }
 
 .FormRegister-Input {

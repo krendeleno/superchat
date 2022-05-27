@@ -32,9 +32,10 @@
 
 .FormCreateChat-ButtonAdd {
     background-color: var(--black);
-    padding: 7px 13px;
+    padding: 5px 17px;
     width: fit-content;
     margin-bottom: 16px;
+    box-sizing: border-box;
 }
 
 .FormCreateChat-ButtonAddText {
@@ -47,11 +48,11 @@
     font-family: var(--font-manrope);
     font-weight: var(--font-weight-manrope-regular);
 
-    border: 2px dashed var(--grey);
+    border: 3px dashed var(--grey);
     border-radius: 16px;
     margin: 16px;
 
-    padding: 19px 24px;
+    padding: 19px 24px 9px;
 
     display: flex;
     flex-direction: column;
@@ -73,7 +74,7 @@
     display: flex;
     flex-direction: column;
 
-    gap: 7px;
+    gap: 12px;
 }
 
 .FormCreateChat-SelectedTags {
@@ -86,7 +87,8 @@
 
 .FormCreateChat-AddTag {
     display: grid;
-    grid-template-areas:  "input button"
+    grid-template-areas:  "label label"
+                          "input button"
                           "error error";
 
     grid-template-columns:  auto min-content;
@@ -114,4 +116,12 @@
 
 .FormCreateChat-AddTagError {
     grid-area: error;
+}
+
+.FormCreateChat-AddTagInput::placeholder {
+    font-size: 13px;
+}
+
+.FormCreateChat-AddTagLabel {
+    grid-area: label;
 }

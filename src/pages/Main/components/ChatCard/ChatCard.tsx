@@ -29,7 +29,7 @@ export function ChatCard({ id }: { id: number | string }) {
       </span>
 
       <div className={styles["ChatCard-Content"]} style={{
-        border: `${themes[color].secondary} 2px dashed`,
+        border: `${themes[color].secondary} 3px dashed`,
         backgroundColor: isOpen ? "rgba(255,255,255, 0.6)" : ""
       }}>
         {tags.size !== 0 && <span className={styles["ChatCard-TagList"]}>
@@ -49,8 +49,8 @@ export function ChatCard({ id }: { id: number | string }) {
       {isOpen && <div className={styles['ChatCard-Send']}>
         <textarea className={styles['ChatCard-Textarea']} onClick={e => e.stopPropagation()}
                   style={{
-          border: `${themes[color].secondary} 2px dashed`, scrollbarColor: `${themes[color].secondary} rgba(255,255,255, 0.6)`}}/>
-        <Arrow viewBox="0 0 24 24" className={styles['ChatCard-SendIcon']} />
+          border: `${themes[color].secondary} 3px dashed`, scrollbarColor: `${themes[color].secondary} rgba(255,255,255, 0.6)`}}/>
+        <Arrow className={styles['ChatCard-SendIcon']} />
       </div>}
       {isOpen && <Button className={styles["ChatCard-Button"]}
                          style={{ color: themes[color].text }}

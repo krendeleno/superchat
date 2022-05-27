@@ -21,7 +21,7 @@ export const RadioButtons = observer(({name, defaultValues, className}: RadioBut
                 field
               }: any) => (
             <label className={styles['RadioButton-Container']}>
-              <div style={{border: field.value === value ? `2px solid ${themes[value].secondary}` : 'none', backgroundColor: themes[value].primary}} className={styles['RadioButtons-Before']}/>
+              <div style={{border: field.value === value ? `3px solid ${themes[value].secondary}` : 'none', backgroundColor: themes[value].primary}} className={styles['RadioButtons-Before']}/>
               <input type="radio" {...field} value={value} className={styles['RadioButton-Input']}/>
             </label>
             )}

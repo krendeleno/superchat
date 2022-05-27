@@ -40,14 +40,14 @@ export const FormRegister = observer(()  => {
           <Form className={styles['FormRegister-Form']}>
             <TextInput name="login" type="text" className={styles['FormRegister-Input']} placeholder="логин"/>
             <TextInput name="password" type="text" className={styles['FormRegister-Input']} placeholder="пароль"/>
-            <TextInput name="passwordRepeat" type="text" className={styles['FormRegister-Input']} placeholder="пароль"/>
+            <TextInput name="passwordRepeat" type="text" className={styles['FormRegister-Input']} placeholder="пароль еще раз"/>
             <Button className={styles['FormRegister-ButtonRegister']} type="submit" onClick={register}>
               <span>зарегистрироваться</span>
             </Button>
           </Form>
         )}
       </Formik>
-      <Link to="login" className={styles['FormRegister-Enter']}><span>войти</span></Link>
+      <Link to="../login" className={styles['FormRegister-Enter']}><span>войти</span></Link>
     </div>
   )
 });

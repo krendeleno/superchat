@@ -70,8 +70,8 @@ export const FormCreateChat = observer(({ isOpen, setOpen }: FormCreateChatProps
                   defaultValues={Object.keys(themes) as ThemeColors[]}
                   className={styles['FormCreateChat-RadioButton']}/>
               </label>
-              <span>теги:</span>
               <div className={styles['FormCreateChat-AddTag']}>
+                <span className={styles['FormCreateChat-AddTagLabel']}>теги:</span>
                 <TextInput className={styles['FormCreateChat-AddTagInput']}
                            classNameError={styles['FormCreateChat-AddTagError']}
                            placeholder="введите тег"

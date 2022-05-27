@@ -12,4 +12,8 @@
     overflow-x: auto;
     width: 100%;
     scrollbar-width: thin;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    line-height: 17px;
 }
