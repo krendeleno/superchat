@@ -36,7 +36,7 @@ export const DraggableChatCard: FC<Omit<DragItem, "type">> = memo(
         role="DraggableBox"
         draggable={!isInputFieldFocused}
       >
-        <ChatCard id={id} setInputFieldFocused={setInputFieldFocused}/>
+        <ChatCard id={id} setInputFieldFocused={setInputFieldFocused} isDragging={isDragging}/>
       </motion.div>
     );
   }

@@ -8,6 +8,7 @@ import { DraggableChatCard } from "src/pages/Main/components/DraggableChatCard";
 import ChatStore from "src/stores/main.store";
 
 import styles from "./ChatList.module.css";
+import { AnimatePresence } from "framer-motion";
 
 export const ChatList = observer(() => {
   useEffect(() => {
@@ -42,11 +43,13 @@ export const ChatList = observer(() => {
   );
   return (
     <div ref={drop} className={styles["ChatList"]}>
+      <AnimatePresence>
       {Object.keys(ChatStore.chatArray)
         .filter(id => ChatStore.selectedTags.size === 0 || checkTags(ChatStore.chatArray[id].tags, ChatStore.selectedTags))
         .map((key) => (
         <DraggableChatCard id={key} key={key} {...ChatStore.chatArray[key]} />
-      ))}
+        ))}
+      </AnimatePresence>
     </div>
   );
 });

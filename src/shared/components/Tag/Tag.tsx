@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
+import { AnimatePresence, motion } from "framer-motion";
 
 import { themes } from "src/shared/constants";
 import { ThemeColors } from "src/shared/types";
@@ -22,7 +23,11 @@ export const Tag = observer(({ tag, className, shadow, small, isActive, color, d
   const [showDelete, setShowDelete] = useState(false);
 
   return (
-        <div {...rest} className={[
+        <motion.div {...rest}
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.3 }}
+                    className={[
           styles['Tag'],
           className,
           isActive ? styles['Tag_active'] : "",
@@ -33,8 +38,12 @@ export const Tag = observer(({ tag, className, shadow, small, isActive, color, d
              onMouseEnter={() => setShowDelete(true)}
              onMouseLeave={() => setShowDelete(false)}
         >
-          {showDelete && deletable && <div className={styles['Tag_delete']}><CrossSmall/></div>}
-          <span className={styles['Tag_text']}>{tag}</span>
-        </div>
+          <AnimatePresence>
+          {showDelete && deletable && <motion.div initial={{ opacity: 0, scale: 0.5 }}
+                                                  animate={{ opacity: 1, scale: 1 }}
+                                                  exit={{ opacity: 0, scale: 0.3 }}  className={styles['Tag_delete']}><CrossSmall/></motion.div>}
+          </AnimatePresence>
+            <span className={styles['Tag_text']}>{tag}</span>
+        </motion.div>
   )
 });

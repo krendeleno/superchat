@@ -83,13 +83,13 @@ export const FormCreateChat = observer(({ isOpen, setOpen }: FormCreateChatProps
                   <span>добавить</span>
                 </Button>
               </div>
-              {Boolean(props.values.tags.length) &&
                 <div className={styles['FormCreateChat-SelectedTags']}>
-                  {props.values.tags.map(tag => <Tag key={tag} tag={tag} shadow deletable
-                                                     onClick={() =>
-                                                       props.setValues({...props.values, tags: props.values.tags.filter(x => x!== tag)})}/>)}
+                  <AnimatePresence>
+                    {props.values.tags.map(tag => <Tag key={tag} tag={tag} shadow deletable
+                                                       onClick={() =>
+                                                         props.setValues({...props.values, tags: props.values.tags.filter(x => x!== tag)})}/>)}
+                  </AnimatePresence>
                 </div>
-              }
             </div>
             <Button className={styles['FormCreateChat-ButtonAdd']} type="submit">
               <span className={styles['FormCreateChat-ButtonAddText']}>создать чат</span>

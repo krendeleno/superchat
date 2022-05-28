@@ -11,7 +11,10 @@ import { Arrow } from "src/assets/icons";
 
 import styles from "./ChatCard.module.css";
 
-export function ChatCard({ id, setInputFieldFocused }: { id: number | string, setInputFieldFocused?: React.Dispatch<React.SetStateAction<boolean>> }) {
+export function ChatCard({ id, setInputFieldFocused, isDragging }:
+                           { id: number | string,
+                             setInputFieldFocused?: React.Dispatch<React.SetStateAction<boolean>>
+                             isDragging?: boolean}) {
   const { title, tags, color, creator, isOpen } = ChatStore.chatArray[id];
 
   const handleCloseChat = action(() => {
@@ -28,11 +31,14 @@ export function ChatCard({ id, setInputFieldFocused }: { id: number | string, se
   })
 
   return (
-    <motion.div layout="size" transition={{duration: 0.2}} className={styles["ChatCard"]} style={{ backgroundColor: themes[color].primary }}>
+    <motion.div
+      initial={isDragging === undefined ? {} : { opacity: 0, scale: 0.5 }}
+      animate={isDragging === undefined ? {} : { opacity: 1, scale: 1 }}
+      exit={isDragging === undefined ? {} : { opacity: 0, scale: 0.5 }}
+      layout="size" transition={{duration: 0.2}} className={styles["ChatCard"]} style={{ backgroundColor: themes[color].primary }}>
       <span className={styles["ChatCard-Title"]} title={title}>
         {title}
       </span>
-
       <div className={styles["ChatCard-Content"]} style={{
         border: `${themes[color].secondary} 3px dashed`,
         backgroundColor: isOpen ? "rgba(255,255,255, 0.6)" : ""
