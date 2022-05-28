@@ -37,12 +37,12 @@
 }
 
 .TextInput[required] + .TextInput-Label::after {
-  content:"*";
-  color:red;
+  content:" *";
+  color: var(--red);
 }
 
 .TextInput-Error {
-  color: var(--error);
+  color: var(--primary-red);
   font-family: var(--font-manrope);
   font-size: 16px;
 

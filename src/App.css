@@ -22,7 +22,7 @@ body, html, #root {
   --black: #414141;
   --white: #FFFFFF;
   --grey: #BAC1C7;
-  --error: #e53838;
+  --primary-red: #e53838;
   --red: #FFA8A8;
 
   --tag-active: var(--black);
