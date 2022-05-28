@@ -2,20 +2,43 @@
   border: none;
   border-bottom: 1px solid var(--black);
 
-  width: auto;
+  width: 100%;
 
   font-family: var(--font-manrope);
+  position:relative;
+  z-index:9;
+  background:transparent;
+  padding: 5px;
+  font-size: 16px;
 }
 
 .TextInput:focus {
   outline: none !important;
 }
 
-.TextInput::placeholder {
+.TextInput-Label {
   font-family: var(--font-manrope);
   color: rgba(0, 0, 0, 0.3);
   font-weight: var(--font-weight-manrope-regular);
   font-size: 16px;
+}
+
+.TextInput-Container {
+  position: relative;
+  width: inherit;
+}
+
+.TextInput-Label {
+  position:absolute;
+  left:5px;
+  top:5px;
+  z-index:1;
+  color:#ccc;
+}
+
+.TextInput[required] + .TextInput-Label::after {
+  content:"*";
+  color:red;
 }
 
 .TextInput-Error {

@@ -32,7 +32,6 @@ export const FormCreateChat = observer(({ isOpen, setOpen }: FormCreateChatProps
     }
   }
 
-  // @ts-ignore
   return createPortal(
     <div className={styles['FormCreateChat-ModalLayout']} onClick={() => setOpen(false)}>
       <Formik
@@ -62,7 +61,7 @@ export const FormCreateChat = observer(({ isOpen, setOpen }: FormCreateChatProps
           <Form className={styles['FormCreateChat']} onClick={e => e.stopPropagation()}>
             <Cross onClick={() => setOpen(false)} className={styles['FormCreateChat-Icon']}/>
             <div className={styles['FormCreateChat-Content']}>
-              <TextInput placeholder="название" name="title" type="text"/>
+              <TextInput placeholder="название" name="title" type="text" required/>
               <label className={styles['FormCreateChat-Theme']}>
                 <span className={styles['FormCreateChat-ThemeLabel']}>тема: </span>
                 <RadioButtons
@@ -74,7 +73,6 @@ export const FormCreateChat = observer(({ isOpen, setOpen }: FormCreateChatProps
                 <span className={styles['FormCreateChat-AddTagLabel']}>теги:</span>
                 <TextInput className={styles['FormCreateChat-AddTagInput']}
                            classNameError={styles['FormCreateChat-AddTagError']}
-                           placeholder="введите тег"
                            name="tagsProvider"
                            type="text"/>
                 <Button type="button" className={styles['FormCreateChat-AddTagButton']} onClick={() => handleAddInput(props)}>

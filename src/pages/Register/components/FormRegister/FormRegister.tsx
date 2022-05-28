@@ -38,9 +38,9 @@ export const FormRegister = observer(()  => {
       >
         {props => (
           <Form className={styles['FormRegister-Form']}>
-            <TextInput name="login" type="text" className={styles['FormRegister-Input']} placeholder="логин"/>
-            <TextInput name="password" type="text" className={styles['FormRegister-Input']} placeholder="пароль"/>
-            <TextInput name="passwordRepeat" type="text" className={styles['FormRegister-Input']} placeholder="пароль еще раз"/>
+            <TextInput name="login" type="text" className={styles['FormRegister-Input']} placeholder="логин" required/>
+            <TextInput name="password" type="text" className={styles['FormRegister-Input']} placeholder="пароль" required/>
+            <TextInput name="passwordRepeat" type="text" className={styles['FormRegister-Input']} placeholder="пароль еще раз" required/>
             <Button className={styles['FormRegister-ButtonRegister']} type="submit" onClick={register}>
               <span>зарегистрироваться</span>
             </Button>

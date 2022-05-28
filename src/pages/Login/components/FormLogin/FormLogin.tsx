@@ -35,7 +35,7 @@ export const FormLogin = observer(()  => {
       >
         {props => (
           <Form className={styles['FormLogin-Form']}>
-            <TextInput name="login" type="text" className={styles['FormLogin-Input']} placeholder="логин"/>
+            <TextInput name="login" type="text" className={styles['FormLogin-Input']} placeholder="логин" />
             <TextInput name="password" type="text" className={styles['FormLogin-Input']} placeholder="пароль"/>
             <Button className={styles['FormLogin-ButtonLogin']} type="submit" onClick={login}>
               <span>войти</span>
