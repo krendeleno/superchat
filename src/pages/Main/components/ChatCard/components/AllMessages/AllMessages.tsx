@@ -1,5 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
+import { AnimatePresence, motion } from "framer-motion";
 
 import { Message, ThemeColors } from "src/shared/types";
 import ChatStore from "src/stores/main.store";
@@ -17,21 +18,22 @@ export const AllMessages = observer(({id, color, setInputFieldFocused}: AllMessa
   const messages = ChatStore.chatArray[id].isOpen ? ChatStore.openChatsMessages[id] || [] : ChatStore.chatArray[id].lastMessages;
 
   return (
-    <>
-      <div className={styles['AllMessages-List']} style={{scrollbarColor: `${themes[color].secondary} rgba(255,255,255, 0.6)`}}>
+      <motion.div
+                  className={styles['AllMessages-List']}
+                  style={{scrollbarColor: `${themes[color].secondary} rgba(255,255,255, 0.6)`}}>
+        <AnimatePresence>
         {Boolean(messages.length) &&
           messages.map(({sentAt, message, sender}: Message) => (
             <div
               className={styles['AllMessages-Message']}
               key={sentAt}
-
+              style={ChatStore.chatArray[id].isOpen ? {} : {whiteSpace: "nowrap", overflow: "hidden"}}
             >
               <span onMouseEnter={() => setInputFieldFocused && setInputFieldFocused(true)}
                     onMouseLeave={() => setInputFieldFocused && setInputFieldFocused(false)}>{sender}: {message}</span>
             </div>
           ))}
-      </div>
-
-    </>
+        </AnimatePresence>
+      </motion.div>
   );
 });

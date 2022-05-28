@@ -16,6 +16,7 @@
     "@types/react-dom": "^17.0.14",
     "axios": "^0.26.1",
     "formik": "^2.2.9",
+    "framer-motion": "^6.3.4",
     "husky": "^7.0.4",
     "immutability-helper": "^3.1.1",
     "lint-staged": "^12.3.7",

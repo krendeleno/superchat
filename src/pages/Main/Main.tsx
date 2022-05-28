@@ -10,9 +10,11 @@ import { TagList } from "src/pages/Main/components/TagList/";
 import { Header } from "src/pages/Main/components/Header";
 import { AddChatButton } from "src/pages/Main/components/AddChatButton";
 
+import styles from "src/pages/Main/Main.module.css"
+
 export const Main = observer(() => {
   return (
-    <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+    <div className={styles["Main"]}>
       <Header />
       <TagList />
       <AddChatButton />
@@ -22,6 +24,6 @@ export const Main = observer(() => {
                 <CustomDragLayer />
             </DndProvider>
         </Box>
-    </Box>
+    </div>
   );
 });

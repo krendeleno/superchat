@@ -1,5 +1,6 @@
 import React from "react";
 import { action } from "mobx";
+import { motion } from "framer-motion";
 
 import { Tag } from "src/shared/components/Tag";
 import ChatStore from "src/stores/main.store";
@@ -27,7 +28,7 @@ export function ChatCard({ id, setInputFieldFocused }: { id: number | string, se
   })
 
   return (
-    <div className={styles["ChatCard"]} style={{ backgroundColor: themes[color].primary }}>
+    <motion.div layout="size" transition={{duration: 0.2}} className={styles["ChatCard"]} style={{ backgroundColor: themes[color].primary }}>
       <span className={styles["ChatCard-Title"]} title={title}>
         {title}
       </span>
@@ -65,6 +66,6 @@ export function ChatCard({ id, setInputFieldFocused }: { id: number | string, se
                          style={{ color: themes[color].text }}
                          onClick={handleCloseChat}
       ><span>закрыть чат</span></Button>}
-    </div>
+    </motion.div>
   );
 }

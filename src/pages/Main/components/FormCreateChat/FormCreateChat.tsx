@@ -3,6 +3,7 @@ import { observer } from "mobx-react";
 import { createPortal } from 'react-dom'
 import { Formik, Form, FormikProps } from "formik";
 import * as Yup from 'yup';
+import { AnimatePresence, motion } from "framer-motion";
 
 import { Cross } from "src/assets/icons";
 import { Button } from "src/shared/components/Button";
@@ -21,10 +22,6 @@ export type FormCreateChatProps = {
 }
 
 export const FormCreateChat = observer(({ isOpen, setOpen }: FormCreateChatProps)  => {
-  if (!isOpen) {
-    return <></>
-  }
-
   const handleAddInput = ({setValues, values, errors, setFieldTouched}:  FormikProps<any>) => {
     if (!errors.tagsProvider) {
       setValues({...values, tagsProvider: '', tags: [...values.tags, values.tagsProvider]});
@@ -33,7 +30,14 @@ export const FormCreateChat = observer(({ isOpen, setOpen }: FormCreateChatProps
   }
 
   return createPortal(
-    <div className={styles['FormCreateChat-ModalLayout']} onClick={() => setOpen(false)}>
+    <AnimatePresence>
+      {isOpen && <motion.div
+      key="modal"
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.3 }}
+      transition={{ ease: "easeOut", duration: 0.2 }}
+      className={styles['FormCreateChat-ModalLayout']} onClick={() => setOpen(false)}>
       <Formik
         initialValues={{ title: '', colorTheme: "blue", tags: [], tagsProvider: '' }}
         onSubmit={(values, { setSubmitting }) => {
@@ -93,6 +97,7 @@ export const FormCreateChat = observer(({ isOpen, setOpen }: FormCreateChatProps
           </Form>
         )}
       </Formik>
-    </div>
+    </motion.div>}
+    </AnimatePresence>
   , document.getElementById('root')!);
 });

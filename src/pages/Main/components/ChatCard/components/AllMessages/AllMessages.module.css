@@ -2,14 +2,16 @@
     font-family: var(--font-manrope);
     font-weight: var(--font-weight-manrope-regular);
 
-    overflow-wrap: break-word;
-    width: fit-content;
+    width: auto;
     cursor: text;
+
+
+    text-overflow: ellipsis;
 }
 
 .AllMessages-List {
     max-height: 315px;
-    overflow-x: auto;
+    overflow-y: auto;
     width: 100%;
     scrollbar-width: thin;
     display: flex;

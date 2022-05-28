@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FC, memo, useEffect } from "react";
 import { useDrag, DragSourceMonitor } from "react-dnd";
 import { getEmptyImage } from "react-dnd-html5-backend";
+import { motion } from "framer-motion"
 
 import { ChatCard } from "src/pages/Main/components/ChatCard";
 import { ItemTypes } from "src/shared/types/ItemTypes";
@@ -29,14 +30,14 @@ export const DraggableChatCard: FC<Omit<DragItem, "type">> = memo(
     }, [preview]);
 
     return (
-      <div
+      <motion.div
         ref={drag}
         style={getStyles(left, top, isDragging)}
         role="DraggableBox"
         draggable={!isInputFieldFocused}
       >
         <ChatCard id={id} setInputFieldFocused={setInputFieldFocused}/>
-      </div>
+      </motion.div>
     );
   }
 );
