@@ -13,6 +13,7 @@
   cursor: pointer;
 
   box-sizing: border-box;
+  position: relative;
 }
 
 .Tag_text {
@@ -21,6 +22,8 @@
 }
 
 .Tag_delete {
+  position: absolute;
+  width: 100%;
   border-radius: var(--tag-border-radius);
   background-color: var(--tag-delete);
 }

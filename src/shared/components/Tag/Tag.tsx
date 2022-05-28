@@ -33,10 +33,8 @@ export const Tag = observer(({ tag, className, shadow, small, isActive, color, d
              onMouseEnter={() => setShowDelete(true)}
              onMouseLeave={() => setShowDelete(false)}
         >
-          {showDelete && deletable
-            ? <div className={styles['Tag_delete']}><CrossSmall/></div>
-            : <span className={styles['Tag_text']}>{tag}</span>
-          }
+          {showDelete && deletable && <div className={styles['Tag_delete']}><CrossSmall/></div>}
+          <span className={styles['Tag_text']}>{tag}</span>
         </div>
   )
 });
