@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/superchat/static/css/main.c8e924b0.css",
-    "main.js": "/superchat/static/js/main.8c8a7612.js",
+    "main.css": "/superchat/static/css/main.b3231595.css",
+    "main.js": "/superchat/static/js/main.56ebae52.js",
     "static/js/787.fd333685.chunk.js": "/superchat/static/js/787.fd333685.chunk.js",
     "static/media/Background.png": "/superchat/static/media/Background.526df8ff186223131a5b.png",
     "index.html": "/superchat/index.html",
-    "main.c8e924b0.css.map": "/superchat/static/css/main.c8e924b0.css.map",
-    "main.8c8a7612.js.map": "/superchat/static/js/main.8c8a7612.js.map",
+    "main.b3231595.css.map": "/superchat/static/css/main.b3231595.css.map",
+    "main.56ebae52.js.map": "/superchat/static/js/main.56ebae52.js.map",
     "787.fd333685.chunk.js.map": "/superchat/static/js/787.fd333685.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c8e924b0.css",
-    "static/js/main.8c8a7612.js"
+    "static/css/main.b3231595.css",
+    "static/js/main.56ebae52.js"
   ]
 }
