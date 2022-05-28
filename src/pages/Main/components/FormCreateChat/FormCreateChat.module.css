@@ -94,7 +94,8 @@
 
     grid-template-columns:  auto min-content;
 
-    grid-gap: 15px;
+    grid-row-gap: 15px;
+    grid-column-gap: 8px;
 }
 
 .FormCreateChat-AddTagInput {
@@ -102,7 +103,10 @@
     border-radius: 16px;
     grid-area: input;
 
-    padding: 4px;
+    padding: 4px 4px 4px 30px;
+    background: url("src/assets/icons/hashtag.svg") no-repeat scroll 3px 4px;
+    background-size: 21px 21px;
+    box-sizing: border-box;
 }
 
 .FormCreateChat-AddTagButton {
