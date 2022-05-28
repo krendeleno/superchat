@@ -10,10 +10,11 @@ import styles from "./AllMessages.module.css";
 export type AllMessagesProps = {
   id: number | string,
   color: ThemeColors;
+  setInputFieldFocused?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const AllMessages = observer(({id, color}: AllMessagesProps)  => {
-  const messages = ChatStore.openChatsMessages[id] || [];
+export const AllMessages = observer(({id, color, setInputFieldFocused}: AllMessagesProps)  => {
+  const messages = ChatStore.chatArray[id].isOpen ? ChatStore.openChatsMessages[id] || [] : ChatStore.chatArray[id].lastMessages;
 
   return (
     <>
@@ -23,8 +24,10 @@ export const AllMessages = observer(({id, color}: AllMessagesProps)  => {
             <div
               className={styles['AllMessages-Message']}
               key={sentAt}
+
             >
-              <span>{sender}: {message}</span>
+              <span onMouseEnter={() => setInputFieldFocused && setInputFieldFocused(true)}
+                    onMouseLeave={() => setInputFieldFocused && setInputFieldFocused(false)}>{sender}: {message}</span>
             </div>
           ))}
       </div>

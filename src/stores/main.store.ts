@@ -48,14 +48,11 @@ class ChatStore {
             tags: new Set(chat.tags),
             top: getRandomInt(500),
             left: getRandomInt(1000),
-            isOpen: false
+            isOpen: false,
+            inputText: ''
           })) as unknown as ChatMap)
       )
     );
-  }
-
-  setIsOpen(id: string | number, state: boolean) {
-    this.chatArray[id].isOpen = state;
   }
 
   moveBox(id: string | number, left: number, top: number) {

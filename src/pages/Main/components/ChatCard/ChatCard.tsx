@@ -1,26 +1,30 @@
 import React from "react";
+import { action } from "mobx";
 
 import { Tag } from "src/shared/components/Tag";
 import ChatStore from "src/stores/main.store";
 import { themes } from "src/shared/constants";
-import { LastMessages } from "src/pages/Main/components/ChatCard/components/LastMessages";
 import { AllMessages } from "src/pages/Main/components/ChatCard/components/AllMessages";
 import { Button } from "src/shared/components/Button";
 import { Arrow } from "src/assets/icons";
 
 import styles from "./ChatCard.module.css";
 
-export function ChatCard({ id }: { id: number | string }) {
+export function ChatCard({ id, setInputFieldFocused }: { id: number | string, setInputFieldFocused?: React.Dispatch<React.SetStateAction<boolean>> }) {
   const { title, tags, color, creator, isOpen } = ChatStore.chatArray[id];
 
-  const handleCloseChat = () => {
-    ChatStore.setIsOpen(id, false);
-  };
+  const handleCloseChat = action(() => {
+    ChatStore.chatArray[id].isOpen = false;
+  });
 
-  const handleOpenChat = () => {
-    ChatStore.fetchChatMessages(id);
-    ChatStore.setIsOpen(id, true);
-  };
+  const handleOpenChat = action (  () => {
+    ChatStore.fetchChatMessages(id)
+    ChatStore.chatArray[id].isOpen = true;
+  });
+
+  const handleInputChange = action((event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    ChatStore.chatArray[id].inputText = event.target.value;
+  })
 
   return (
     <div className={styles["ChatCard"]} style={{ backgroundColor: themes[color].primary }}>
@@ -39,7 +43,7 @@ export function ChatCard({ id }: { id: number | string }) {
 
         <span className={styles["ChatCard-Creator"]}>{creator}</span>
 
-        {isOpen ? <AllMessages color={color} id={id} /> : <LastMessages id={id} />}
+        <AllMessages color={color} id={id} setInputFieldFocused={setInputFieldFocused}/>
 
         {!isOpen && <Button className={styles["ChatCard-Button"]}
                             style={{ color: themes[color].text }}
@@ -47,9 +51,14 @@ export function ChatCard({ id }: { id: number | string }) {
         ><span>открыть чат</span></Button>}
       </div>
       {isOpen && <div className={styles['ChatCard-Send']}>
-        <textarea className={styles['ChatCard-Textarea']} onClick={e => e.stopPropagation()}
+        <textarea className={styles['ChatCard-Textarea']}
                   style={{
-          border: `${themes[color].secondary} 3px dashed`, scrollbarColor: `${themes[color].secondary} rgba(255,255,255, 0.6)`}}/>
+          border: `${themes[color].secondary} 3px dashed`, scrollbarColor: `${themes[color].secondary} rgba(255,255,255, 0.6)`}}
+          onChange={handleInputChange}
+                  value={ChatStore.chatArray[id].inputText }
+                  onFocus = {() => setInputFieldFocused && setInputFieldFocused(true)}
+                  onBlur = {() => setInputFieldFocused && setInputFieldFocused(false)}
+        />
         <Arrow className={styles['ChatCard-SendIcon']} />
       </div>}
       {isOpen && <Button className={styles["ChatCard-Button"]}

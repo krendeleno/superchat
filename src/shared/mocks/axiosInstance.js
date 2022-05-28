@@ -22,12 +22,12 @@ axiosMockAdapterInstance.onGet("/api/v1/chats").reply(() => {
         {
           sender: "Kirill",
           message: "Штош",
-          sentAt: "123"
+          sentAt: "434234"
         },
         {
           sender: "Kirill",
           message: "Очередное невероятно длинное сообщение",
-          sentAt: "123"
+          sentAt: "4324234"
         },
       ],
     },
@@ -42,12 +42,12 @@ axiosMockAdapterInstance.onGet("/api/v1/chats").reply(() => {
         {
           sender: "Dana",
           message: "Он нам не нужен",
-          sentAt: "123"
+          sentAt: "12332223"
         },
         {
           sender: "Vika",
           message: "Ну да, ну да...",
-          sentAt: "123"
+          sentAt: "124443333"
         },
       ],
     },
@@ -76,12 +76,12 @@ axiosMockAdapterInstance.onGet("/api/v1/chats/1/messages").reply(() => {
     {
       sender: "Vika",
       message: "Ну да, ну да...",
-      sentAt: "1232"
+      sentAt: "123442"
     },
     {
       sender: "Vika",
       message: "Ну да, ну да...",
-      sentAt: "1233"
+      sentAt: "124433"
     },
     {
       sender: "Vika",
@@ -90,62 +90,62 @@ axiosMockAdapterInstance.onGet("/api/v1/chats/1/messages").reply(() => {
     },    {
       sender: "Vika",
       message: "Ну да, ну да...",
-      sentAt: "123"
+      sentAt: "12323333"
     },
     {
       sender: "Vika",
       message: "Ну да, ну да...",
-      sentAt: "1232"
+      sentAt: "12343222"
     },
     {
       sender: "Vika",
       message: "Ну да, ну да...",
-      sentAt: "1233"
+      sentAt: "12633"
     },
     {
       sender: "Vika",
       message: "Ну да, ну да...",
-      sentAt: "1235"
+      sentAt: "12345"
     },
     {
       sender: "Vika",
       message: "Ну да, ну да...",
-      sentAt: "123"
+      sentAt: "1723"
     },
     {
       sender: "Vika",
       message: "Ну да, ну да...",
-      sentAt: "1232"
+      sentAt: "12832"
     },
     {
       sender: "Vika",
       message: "Ну да, ну да...",
-      sentAt: "1233"
+      sentAt: "12933"
     },
     {
       sender: "Vika",
       message: "Ну да, ну да...",
-      sentAt: "1235"
+      sentAt: "12035"
     },
     {
       sender: "Vika",
       message: "Ну да, ну да...",
-      sentAt: "123"
+      sentAt: "1283"
     },
     {
       sender: "Vika",
       message: "Ну да, ну да...",
-      sentAt: "1232"
+      sentAt: "11232"
     },
     {
       sender: "Vika",
       message: "Ну да, ну да...",
-      sentAt: "1233"
+      sentAt: "01233"
     },
     {
       sender: "Vika",
       message: "Ну да, ну да...",
-      sentAt: "1235"
+      sentAt: "12355"
     }
   ];
 

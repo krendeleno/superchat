@@ -17,7 +17,7 @@ export type Chat = {
 };
 
 export type ChatMap = {
-    [id: string | number]: Omit<Chat, "id"> & { top: number; left: number, isOpen: boolean };
+    [id: string | number]: Omit<Chat, "id"> & { top: number; left: number, isOpen: boolean, inputText?: string };
 };
 
 export type ChatMessages = {

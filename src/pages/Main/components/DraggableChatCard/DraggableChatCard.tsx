@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FC, memo, useEffect } from "react";
 import { useDrag, DragSourceMonitor } from "react-dnd";
 import { getEmptyImage } from "react-dnd-html5-backend";
@@ -11,6 +11,8 @@ import { getStyles } from "./DraggableChatCard.helpers";
 
 export const DraggableChatCard: FC<Omit<DragItem, "type">> = memo(
   function DraggableBox({ id, left, top }) {
+    const [isInputFieldFocused, setInputFieldFocused] = useState<boolean>(false);
+
     const [{ isDragging }, drag, preview] = useDrag(
       () => ({
         type: ItemTypes.CHAT,
@@ -31,8 +33,9 @@ export const DraggableChatCard: FC<Omit<DragItem, "type">> = memo(
         ref={drag}
         style={getStyles(left, top, isDragging)}
         role="DraggableBox"
+        draggable={!isInputFieldFocused}
       >
-        <ChatCard id={id} />
+        <ChatCard id={id} setInputFieldFocused={setInputFieldFocused}/>
       </div>
     );
   }
