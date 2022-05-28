@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/superchat/static/css/main.dad8753f.css",
-    "main.js": "/superchat/static/js/main.afc0aa69.js",
+    "main.css": "/superchat/static/css/main.31def58a.css",
+    "main.js": "/superchat/static/js/main.8d759b2a.js",
     "static/js/787.fd333685.chunk.js": "/superchat/static/js/787.fd333685.chunk.js",
     "static/media/Background.png": "/superchat/static/media/Background.526df8ff186223131a5b.png",
+    "static/media/hashtag.svg": "/superchat/static/media/hashtag.9c5a1583e6b65646df0a.svg",
     "index.html": "/superchat/index.html",
-    "main.dad8753f.css.map": "/superchat/static/css/main.dad8753f.css.map",
-    "main.afc0aa69.js.map": "/superchat/static/js/main.afc0aa69.js.map",
+    "main.31def58a.css.map": "/superchat/static/css/main.31def58a.css.map",
+    "main.8d759b2a.js.map": "/superchat/static/js/main.8d759b2a.js.map",
     "787.fd333685.chunk.js.map": "/superchat/static/js/787.fd333685.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.dad8753f.css",
-    "static/js/main.afc0aa69.js"
+    "static/css/main.31def58a.css",
+    "static/js/main.8d759b2a.js"
   ]
 }
