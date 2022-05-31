@@ -1,6 +1,5 @@
 .Header {
     height: 46px;
-    background-color: var(--grey);
     display: flex;
     flex-direction: row;
     justify-content: space-between;

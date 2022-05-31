@@ -10,7 +10,7 @@ const SvgPlus = (props) => (
   >
     <path
       d="M14 3v22M25 14H3"
-      stroke="#fff"
+      stroke={props.color}
       strokeWidth={5}
       strokeLinecap="round"
     />

@@ -1,7 +1,5 @@
 .TextInput {
   border: none;
-  border-bottom: 1px solid var(--black);
-
   width: 100%;
 
   font-family: var(--font-manrope);

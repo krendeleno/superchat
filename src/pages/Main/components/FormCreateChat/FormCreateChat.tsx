@@ -1,8 +1,8 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useContext } from "react";
 import { observer } from "mobx-react";
-import { createPortal } from 'react-dom'
+import { createPortal } from "react-dom";
 import { Formik, Form, FormikProps } from "formik";
-import * as Yup from 'yup';
+import * as Yup from "yup";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { Cross } from "src/assets/icons";
@@ -15,89 +15,172 @@ import { Tag } from "src/shared/components/Tag";
 import { RadioButtons } from "src/pages/Main/components/FormCreateChat/components/RadioButtons";
 
 import styles from "./FormCreateChat.module.css";
+import { ThemeContext } from "src/shared/themes";
 
 export type FormCreateChatProps = {
-  isOpen: boolean,
+  isOpen: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
-}
+};
 
-export const FormCreateChat = observer(({ isOpen, setOpen }: FormCreateChatProps)  => {
-  const handleAddInput = ({setValues, values, errors, setFieldTouched}:  FormikProps<any>) => {
-    if (!errors.tagsProvider) {
-      setValues({...values, tagsProvider: '', tags: [...values.tags, values.tagsProvider]});
-      setFieldTouched('tagsProvider', false);
-    }
-  }
+export const FormCreateChat = observer(
+  ({ isOpen, setOpen }: FormCreateChatProps) => {
+    const handleAddInput = ({
+      setValues,
+      values,
+      errors,
+      setFieldTouched,
+    }: FormikProps<any>) => {
+      if (!errors.tagsProvider) {
+        setValues({
+          ...values,
+          tagsProvider: "",
+          tags: [...values.tags, values.tagsProvider],
+        });
+        setFieldTouched("tagsProvider", false);
+      }
+    };
 
-  return createPortal(
-    <AnimatePresence>
-      {isOpen && <motion.div
-      key="modal"
-      initial={{ opacity: 0, scale: 0.5 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.3 }}
-      transition={{ ease: "easeOut", duration: 0.2 }}
-      className={styles['FormCreateChat-ModalLayout']} onClick={() => setOpen(false)}>
-      <Formik
-        initialValues={{ title: '', colorTheme: "blue", tags: [], tagsProvider: '' }}
-        onSubmit={(values, { setSubmitting }) => {
-            console.log(values);
-        }}
-        validationSchema={Yup.object({
-          title: Yup.string()
-            .required('Обязательное поле'),
-          colorTheme: Yup.string()
-            .oneOf(
-              ['blue', 'red', 'blue', 'green'],
-              'Не выбран цвет'
-            )
-            .required('Обязательное поле'),
-          tags: Yup.array(),
-          tagsProvider: Yup.string().ensure()
-            .min(3, 'Длина тега должна быть хотя бы 3 символа')
-            .transform((value) => !!value ? value : null)
-            .test('unique', 'Такой тег уже есть в вашем списке',
-              // @ts-ignore
-              (value, context) => !context.resolve(Yup.ref('tags')).includes(value))
-        })}
-      >
-        {props => (
-          <Form className={styles['FormCreateChat']} onClick={e => e.stopPropagation()}>
-            <Cross onClick={() => setOpen(false)} className={styles['FormCreateChat-Icon']}/>
-            <div className={styles['FormCreateChat-Content']}>
-              <TextInput placeholder="название" name="title" type="text" required/>
-              <label className={styles['FormCreateChat-Theme']}>
-                <span className={styles['FormCreateChat-ThemeLabel']}>тема: </span>
-                <RadioButtons
-                  name="colorTheme"
-                  defaultValues={Object.keys(themes) as ThemeColors[]}
-                  className={styles['FormCreateChat-RadioButton']}/>
-              </label>
-              <div className={styles['FormCreateChat-AddTag']}>
-                <span className={styles['FormCreateChat-AddTagLabel']}>теги:</span>
-                <TextInput className={styles['FormCreateChat-AddTagInput']}
-                           classNameError={styles['FormCreateChat-AddTagError']}
-                           name="tagsProvider"
-                           type="text"/>
-                <Button type="button" className={styles['FormCreateChat-AddTagButton']} onClick={() => handleAddInput(props)}>
-                  <span>добавить</span>
-                </Button>
-              </div>
-                <div className={styles['FormCreateChat-SelectedTags']}>
-                  <AnimatePresence>
-                    {props.values.tags.map(tag => <Tag key={tag} tag={tag} shadow deletable
-                                                       onClick={() =>
-                                                         props.setValues({...props.values, tags: props.values.tags.filter(x => x!== tag)})}/>)}
-                  </AnimatePresence>
-                </div>
-            </div>
-            <Button className={styles['FormCreateChat-ButtonAdd']} type="submit">
-              <span className={styles['FormCreateChat-ButtonAddText']}>создать чат</span>
-            </Button>
-          </Form>
+    const { theme } = useContext(ThemeContext);
+
+    return createPortal(
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            key="modal"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.3 }}
+            transition={{ ease: "easeOut", duration: 0.2 }}
+            className={styles["FormCreateChat-ModalLayout"]}
+            onClick={() => setOpen(false)}
+          >
+            <Formik
+              initialValues={{
+                title: "",
+                colorTheme: "blue",
+                tags: [],
+                tagsProvider: "",
+              }}
+              onSubmit={(values, { setSubmitting }) => {
+                console.log(values);
+              }}
+              validationSchema={Yup.object({
+                title: Yup.string().required("Обязательное поле"),
+                colorTheme: Yup.string()
+                  .oneOf(["blue", "red", "blue", "green"], "Не выбран цвет")
+                  .required("Обязательное поле"),
+                tags: Yup.array(),
+                tagsProvider: Yup.string()
+                  .ensure()
+                  .min(3, "Длина тега должна быть хотя бы 3 символа")
+                  .transform((value) => (!!value ? value : null))
+                  .test(
+                    "unique",
+                    "Такой тег уже есть в вашем списке",
+                    (value, context) =>
+                      // @ts-ignore
+                      !context.resolve(Yup.ref("tags")).includes(value)
+                  ),
+              })}
+            >
+              {(props) => (
+                <Form
+                  className={styles["FormCreateChat"]}
+                  onClick={(e) => e.stopPropagation()}
+                  style={{ backgroundColor: theme.form }}
+                >
+                  <Cross
+                    onClick={() => setOpen(false)}
+                    className={styles["FormCreateChat-Icon"]}
+                    color={theme.line}
+                  />
+                  <div
+                    className={styles["FormCreateChat-Content"]}
+                    style={{ border: `3px dashed ${theme.border}` }}
+                  >
+                    <TextInput
+                      placeholder="название"
+                      name="title"
+                      type="text"
+                      required
+                    />
+                    <label className={styles["FormCreateChat-Theme"]}>
+                      <span
+                        className={styles["FormCreateChat-ThemeLabel"]}
+                        style={{ color: theme.text }}
+                      >
+                        тема:{" "}
+                      </span>
+                      <RadioButtons
+                        name="colorTheme"
+                        defaultValues={Object.keys(themes) as ThemeColors[]}
+                        className={styles["FormCreateChat-RadioButton"]}
+                      />
+                    </label>
+                    <div className={styles["FormCreateChat-AddTag"]}>
+                      <span
+                        className={styles["FormCreateChat-AddTagLabel"]}
+                        style={{ color: theme.text }}
+                      >
+                        теги:
+                      </span>
+                      <TextInput
+                        className={styles["FormCreateChat-AddTagInput"]}
+                        classNameError={styles["FormCreateChat-AddTagError"]}
+                        name="tagsProvider"
+                        type="text"
+                      />
+                      <Button
+                        type="button"
+                        className={styles["FormCreateChat-AddTagButton"]}
+                        onClick={() => handleAddInput(props)}
+                        style={{
+                          backgroundColor: theme.buttonAddTag,
+                          color: theme.buttonAddTagText,
+                        }}
+                      >
+                        <span>добавить</span>
+                      </Button>
+                    </div>
+                    <div className={styles["FormCreateChat-SelectedTags"]}>
+                      <AnimatePresence>
+                        {props.values.tags.map((tag) => (
+                          <Tag
+                            key={tag}
+                            tag={tag}
+                            shadow
+                            deletable
+                            onClick={() =>
+                              props.setValues({
+                                ...props.values,
+                                tags: props.values.tags.filter(
+                                  (x) => x !== tag
+                                ),
+                              })
+                            }
+                          />
+                        ))}
+                      </AnimatePresence>
+                    </div>
+                  </div>
+                  <Button
+                    className={styles["FormCreateChat-ButtonAdd"]}
+                    type="submit"
+                  >
+                    <span
+                      className={styles["FormCreateChat-ButtonAddText"]}
+                      style={{ color: theme.buttonText }}
+                    >
+                      создать чат
+                    </span>
+                  </Button>
+                </Form>
+              )}
+            </Formik>
+          </motion.div>
         )}
-      </Formik>
-    </motion.div>}
-    </AnimatePresence>
-  , document.getElementById('root')!);
-});
+      </AnimatePresence>,
+      document.getElementById("root")!
+    );
+  }
+);

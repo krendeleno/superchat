@@ -10,7 +10,7 @@ const SvgCross = (props) => (
   >
     <path
       d="M18.557 3 3.001 18.556M18.557 18.556 3.001 3"
-      stroke="#C2C2C2"
+      stroke={props.color}
       strokeWidth={5}
       strokeLinecap="round"
     />

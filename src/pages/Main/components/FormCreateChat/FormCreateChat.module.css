@@ -19,8 +19,6 @@
     justify-content: center;
 
     width: 380px;
-    background-color: var(--white);
-
     border-radius: 20px;
 }
 
@@ -40,8 +38,6 @@
 }
 
 .FormCreateChat-ButtonAddText {
-    color: white;
-
     font-size: 16px;
 }
 
@@ -49,7 +45,6 @@
     font-family: var(--font-manrope);
     font-weight: var(--font-weight-manrope-regular);
 
-    border: 3px dashed var(--grey);
     border-radius: 16px;
     margin: 16px;
 
@@ -61,8 +56,6 @@
 
     width: calc(100% - 32px);
     box-sizing: border-box;
-
-
 }
 
 .FormCreateChat-RadioButton {
@@ -110,13 +103,9 @@
 }
 
 .FormCreateChat-AddTagButton {
-    color: white;
     font-weight: var(--font-weight-manrope-bold) !important;
     padding: 4px 7px;
-    background-color: var(--grey);
     grid-area: button;
-
-
 }
 
 .FormCreateChat-AddTagError {

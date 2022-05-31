@@ -33,9 +33,6 @@
 }
 
 .Tag_active {
-  background-color: var(--tag-active);
-  color: var(--white);
-
   box-shadow: none;
 }
 

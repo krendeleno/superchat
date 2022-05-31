@@ -1,15 +1,8 @@
 .FormLogin {
     width: 566px;
-    padding: 24px 30px;
-    background-color: var(--white);
     border-radius: 20px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 
-    gap: 24px;
 }
 
 .FormLogin-Form {
@@ -23,24 +16,33 @@
     gap: 24px;
 }
 
-.FormLogin-Register {
-    align-self: flex-end;
-
-    color: var(--black);
-    font-size: 16px;
-    font-family: var(--font-manrope);
-    font-weight: var(--font-weight-manrope-regular);
-}
-
 .FormLogin-Input {
     font-size: 16px;
 }
 
 .FormLogin-ButtonLogin {
-    margin-top: 26px;
-    background-color: var(--black);
     font-size: 16px;
     padding: 4px;
-    color: white;
     min-width: 127px;
+}
+
+.FormLogin-Register {
+    align-self: flex-end;
+
+    font-size: 16px;
+    font-family: var(--font-manrope);
+    font-weight: var(--font-weight-manrope-regular);
+}
+
+.FormLogin-Wrapper {
+    border: 3px dashed var(--grey);
+    margin: 24px;
+    border-radius: 20px;
+    padding: 20px 16px 13px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 24px;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { observer } from "mobx-react";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -7,6 +7,7 @@ import { ThemeColors } from "src/shared/types";
 import { CrossSmall } from "src/assets/icons";
 
 import styles from "src/shared/components/Tag/Tag.module.css";
+import { colors, ThemeContext } from "src/shared/themes";
 
 type TagProps = {
   tag: string;
@@ -30,8 +31,32 @@ export const Tag = observer(
     deletable = false,
     ...rest
   }: TagProps) => {
+    const { theme } = useContext(ThemeContext);
     const [showDelete, setShowDelete] = useState(false);
+    const getStyles = () => {
+      if (color) {
+        return {
+          backgroundColor: themes[color].secondary,
+          color: colors.black,
+        };
+      }
 
+      if (deletable) {
+        return {
+          backgroundColor: colors.white,
+          color: colors.black,
+        };
+      }
+
+      if (isActive) {
+        return {
+          backgroundColor: theme.tagsActive,
+          color: theme.tagsActiveText,
+        };
+      }
+
+      return { backgroundColor: theme.tags, color: theme.tagsText };
+    };
     return (
       <motion.div
         {...rest}
@@ -47,7 +72,7 @@ export const Tag = observer(
         ]
           .filter((x) => x)
           .join(" ")}
-        style={color ? { backgroundColor: themes[color].secondary } : {}}
+        style={getStyles()}
         onMouseEnter={() => setShowDelete(true)}
         onMouseLeave={() => setShowDelete(false)}
       >

@@ -82,7 +82,10 @@ export function ChatCard({
         {!isOpen && (
           <Button
             className={styles["ChatCard-Button"]}
-            style={{ color: themes[color].text }}
+            style={{
+              color: themes[color].text,
+              backgroundColor: "rgba(255,255,255,0.6)",
+            }}
             onClick={handleOpenChat}
           >
             <span>открыть чат</span>
