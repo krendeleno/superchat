@@ -25,6 +25,7 @@ export const themes = {
     buttonAddTag: colors.grey,
     buttonAddTagText: colors.white,
     logo: colors.black,
+    switchTrack: colors.white,
   },
   dark: {
     background: colors.grey,
@@ -44,6 +45,7 @@ export const themes = {
     buttonAddTag: colors.white,
     buttonAddTagText: colors.black,
     logo: colors.white,
+    switchTrack: colors.grey,
   },
 };
 export type Theme = "light" | "dark";

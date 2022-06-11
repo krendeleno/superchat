@@ -9,6 +9,7 @@ import { Logout } from "src/assets/icons";
 import styles from "./Header.module.css";
 import { ThemeContext } from "src/shared/themes";
 import { Switch } from "@mui/material";
+import { ThemeSwitch } from "src/pages/Main/components/Header/components/ThemeSwitch";
 
 export const Header = observer(() => {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -21,7 +22,7 @@ export const Header = observer(() => {
         color={theme.logo}
       />
       <div className={styles["Header-Logout"]}>
-        <Switch onChange={toggleTheme} color="default" />
+        <ThemeSwitch onChange={toggleTheme} appTheme={theme} />
         <span className={styles["Header-User"]}>{ChatStore.user}</span>
         <Link to="login">
           <Logout />
