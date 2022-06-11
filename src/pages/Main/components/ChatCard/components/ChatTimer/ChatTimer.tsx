@@ -1,36 +1,46 @@
-import React from "react";
-import { observer } from "mobx-react";
-import { AnimatePresence, motion } from "framer-motion";
-
-import { Message, ThemeColors } from "src/shared/types";
-import ChatStore from "src/stores/main.store";
-import { themes } from "src/shared/constants";
-
-import styles from "./ChatTimer.module.css";
+import React, { useEffect } from "react";
 import { useTimer } from "react-timer-hook";
+import { observer } from "mobx-react";
+import { action } from "mobx";
+
+import { themes } from "src/shared/constants";
+import ChatStore from "src/stores/main.store";
+
+import { getDigit } from "src/pages/Main/components/ChatCard/components/ChatTimer";
+
+import styles from "src/pages/Main/components/ChatCard/components/ChatTimer/ChatTimer.module.css";
+
 
 export type ChatTimerProps = {
-  ttl: number;
-  color: ThemeColors;
+  id: number | string;
 };
 
-export const ChatTimer = observer(({ ttl, color }: ChatTimerProps) => {
-  const { seconds, minutes, hours } = useTimer({
-    expiryTimestamp: new Date(Date.now() + ttl),
-    onExpire: () => console.warn("onExpire called"),
+export const ChatTimer = observer(({ id }: ChatTimerProps) => {
+  const { color } = ChatStore.chatArray[id];
+
+  const now = Date.now();
+  const { seconds, minutes, hours, restart } = useTimer({
+    expiryTimestamp: new Date(now + ChatStore.chatArray[id].ttl),
+    onExpire: action(() => delete ChatStore.chatArray[id]),
   });
 
-  const getDigit = (value: number) =>
-    value >= 10 ? value.toString() : "0" + value.toString();
+  useEffect(() => {
+    restart(new Date(now + ChatStore.chatArray[id].ttl));
+    return action(() => {
+      ChatStore.chatArray[id].ttl =
+        ChatStore.chatArray[id].ttl - (Date.now() - now);
+      console.log(ChatStore.chatArray[id].ttl);
+    });
+  }, []);
 
   return (
-    <motion.div
+    <div
       className={styles["ChatTimer"]}
       style={{ backgroundColor: themes[color].secondary }}
     >
       <span className={styles["ChatTimer-Time"]}>{getDigit(hours)}:</span>
       <span className={styles["ChatTimer-Time"]}>{getDigit(minutes)}:</span>
       <span className={styles["ChatTimer-Time"]}>{getDigit(seconds)}</span>
-    </motion.div>
+    </div>
   );
 });
