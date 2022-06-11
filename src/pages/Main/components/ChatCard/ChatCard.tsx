@@ -1,6 +1,6 @@
 import React from "react";
 import { action } from "mobx";
-import { motion } from "framer-motion";
+import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion";
 
 import { Tag } from "src/shared/components/Tag";
 import ChatStore from "src/stores/main.store";
@@ -38,87 +38,96 @@ export function ChatCard({
   );
 
   return (
-    <motion.div
-      initial={isDragging === undefined ? {} : { opacity: 0, scale: 0.5 }}
-      animate={isDragging === undefined ? {} : { opacity: 1, scale: 1 }}
-      exit={isDragging === undefined ? {} : { opacity: 0, scale: 0.5 }}
-      layout="size"
-      transition={{ duration: 0.2 }}
-      className={styles["ChatCard"]}
-      style={{ backgroundColor: themes[color].primary }}
-    >
-      <span className={styles["ChatCard-Title"]} title={title}>
-        {title}
-      </span>
-      <div
-        className={styles["ChatCard-Content"]}
-        style={{
-          border: `${themes[color].secondary} 3px dashed`,
-          backgroundColor: isOpen ? "rgba(255,255,255, 0.6)" : "",
-        }}
+    <AnimateSharedLayout>
+      <motion.div
+        initial={isDragging === undefined ? {} : { opacity: 0, scale: 0.5 }}
+        animate={isDragging === undefined ? {} : { opacity: 1, scale: 1 }}
+        exit={isDragging === undefined ? {} : { opacity: 0, scale: 0.5 }}
+        layout="size"
+        transition={{ duration: 0.2 }}
+        className={styles["ChatCard"]}
+        style={{ backgroundColor: themes[color].primary }}
       >
-        {tags.size !== 0 && (
-          <span className={styles["ChatCard-TagList"]}>
-            {[...tags.keys()].map((tag: string) => (
-              <Tag
-                className={styles["ChatCard-Tag"]}
-                key={tag}
-                tag={tag}
-                color={color}
-                small
-              />
-            ))}
-          </span>
+        <motion.span
+          layout="size"
+          className={styles["ChatCard-Title"]}
+          title={title}
+        >
+          {title}
+        </motion.span>
+        <motion.div
+          layout="size"
+          className={styles["ChatCard-Content"]}
+          style={{
+            border: `${themes[color].secondary} 3px dashed`,
+            backgroundColor: isOpen ? "rgba(255,255,255, 0.6)" : "",
+          }}
+        >
+          {tags.size !== 0 && (
+            <motion.span layout="size" className={styles["ChatCard-TagList"]}>
+              {[...tags.keys()].map((tag: string) => (
+                <Tag
+                  className={styles["ChatCard-Tag"]}
+                  key={tag}
+                  tag={tag}
+                  color={color}
+                  small
+                />
+              ))}
+            </motion.span>
+          )}
+
+          <motion.span layout="size" className={styles["ChatCard-Creator"]}>
+            {creator}
+          </motion.span>
+
+          <AllMessages
+            color={color}
+            id={id}
+            setInputFieldFocused={setInputFieldFocused}
+          />
+
+          {!isOpen && (
+            <Button
+              className={styles["ChatCard-Button"]}
+              style={{
+                color: themes[color].text,
+                backgroundColor: "rgba(255,255,255,0.6)",
+              }}
+              onClick={handleOpenChat}
+            >
+              <span>открыть чат</span>
+            </Button>
+          )}
+        </motion.div>
+        {isOpen && (
+          <div className={styles["ChatCard-Send"]}>
+            <TextareaAutosize
+              className={styles["ChatCard-Textarea"]}
+              style={{
+                border: `${themes[color].secondary} 3px dashed`,
+                scrollbarColor: `${themes[color].secondary} rgba(255,255,255, 0.6)`,
+              }}
+              onChange={handleInputChange}
+              value={ChatStore.chatArray[id].inputText}
+              onFocus={() => setInputFieldFocused && setInputFieldFocused(true)}
+              onBlur={() => setInputFieldFocused && setInputFieldFocused(false)}
+              minRows={2}
+              maxRows={6}
+            />
+            <Arrow className={styles["ChatCard-SendIcon"]} />
+          </div>
         )}
-
-        <span className={styles["ChatCard-Creator"]}>{creator}</span>
-
-        <AllMessages
-          color={color}
-          id={id}
-          setInputFieldFocused={setInputFieldFocused}
-        />
-
-        {!isOpen && (
+        {isOpen && (
           <Button
             className={styles["ChatCard-Button"]}
-            style={{
-              color: themes[color].text,
-              backgroundColor: "rgba(255,255,255,0.6)",
-            }}
-            onClick={handleOpenChat}
+            style={{ color: themes[color].text }}
+            onClick={handleCloseChat}
           >
-            <span>открыть чат</span>
+            <span>закрыть чат</span>
           </Button>
         )}
-      </div>
-      {isOpen && (
-        <div className={styles["ChatCard-Send"]}>
-          <TextareaAutosize
-            className={styles["ChatCard-Textarea"]}
-            style={{
-              border: `${themes[color].secondary} 3px dashed`,
-              scrollbarColor: `${themes[color].secondary} rgba(255,255,255, 0.6)`,
-            }}
-            onChange={handleInputChange}
-            value={ChatStore.chatArray[id].inputText}
-            onFocus={() => setInputFieldFocused && setInputFieldFocused(true)}
-            onBlur={() => setInputFieldFocused && setInputFieldFocused(false)}
-            minRows={2}
-            maxRows={6}
-          />
-          <Arrow className={styles["ChatCard-SendIcon"]} />
-        </div>
-      )}
-      {isOpen && (
-        <Button
-          className={styles["ChatCard-Button"]}
-          style={{ color: themes[color].text }}
-          onClick={handleCloseChat}
-        >
-          <span>закрыть чат</span>
-        </Button>
-      )}
-    </motion.div>
+      </motion.div>
+    </AnimateSharedLayout>
   );
 }
