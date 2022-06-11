@@ -1,27 +1,21 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { useDrop } from "react-dnd";
+import { AnimatePresence } from "framer-motion";
 
 import { ItemTypes } from "src/shared/types/ItemTypes";
 import { DragItem } from "src/shared/types";
 import { DraggableChatCard } from "src/pages/Main/components/DraggableChatCard";
 import ChatStore from "src/stores/main.store";
 
+import { checkTags } from "src/pages/Main/components/ChatList";
+
 import styles from "./ChatList.module.css";
-import { AnimatePresence } from "framer-motion";
 
 export const ChatList = observer(() => {
   useEffect(() => {
     ChatStore.fetchChats();
   }, []);
-
-  const checkTags = (chatTags: Set<string>, selectedTags: Set<string>) => {
-    for (let tag of Array.from(chatTags)) {
-      if (selectedTags.has(tag))
-        return true;
-    }
-    return false;
-  }
 
   const [, drop] = useDrop(
     () => ({
@@ -41,14 +35,23 @@ export const ChatList = observer(() => {
     }),
     [ChatStore.moveBox]
   );
+
   return (
     <div ref={drop} className={styles["ChatList"]}>
       <AnimatePresence>
-      {Object.keys(ChatStore.chatArray)
-        .filter(id => ChatStore.selectedTags.size === 0 || checkTags(ChatStore.chatArray[id].tags, ChatStore.selectedTags))
-        .map((key) => (
-        <DraggableChatCard id={key} key={key} {...ChatStore.chatArray[key]} />
-        ))}
+        {Object.keys(ChatStore.chatArray)
+          .filter(
+            (id) =>
+              ChatStore.selectedTags.size === 0 ||
+              checkTags(ChatStore.chatArray[id].tags, ChatStore.selectedTags)
+          )
+          .map((key) => (
+            <DraggableChatCard
+              id={key}
+              key={key}
+              {...ChatStore.chatArray[key]}
+            />
+          ))}
       </AnimatePresence>
     </div>
   );

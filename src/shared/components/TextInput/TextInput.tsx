@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { useField } from "formik";
 
-import styles from "./TextInput.module.css";
 import { ThemeContext } from "src/shared/themes";
+
+import styles from "./TextInput.module.css";
 
 export type TextInputProps = {
   label?: string;

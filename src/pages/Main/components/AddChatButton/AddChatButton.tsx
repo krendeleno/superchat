@@ -3,9 +3,9 @@ import { observer } from "mobx-react";
 
 import { Plus } from "src/assets/icons";
 import { FormCreateChat } from "src/pages/Main/components/FormCreateChat";
+import { ThemeContext } from "src/shared/themes";
 
 import styles from "./AddChatButton.module.css";
-import { ThemeContext } from "src/shared/themes";
 
 export const AddChatButton = observer(() => {
   const { theme } = useContext(ThemeContext);

@@ -2,7 +2,6 @@ import React, { Dispatch, SetStateAction, useContext } from "react";
 import { observer } from "mobx-react";
 import { createPortal } from "react-dom";
 import { Formik, Form, FormikProps } from "formik";
-import * as Yup from "yup";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { Cross } from "src/assets/icons";
@@ -11,11 +10,12 @@ import { TextInput } from "src/shared/components/TextInput";
 import { themes } from "src/shared/constants";
 import { ThemeColors } from "src/shared/types";
 import { Tag } from "src/shared/components/Tag";
+import { ThemeContext } from "src/shared/themes";
 
 import { RadioButtons } from "src/pages/Main/components/FormCreateChat/components/RadioButtons";
+import { schema } from "src/pages/Main/components/FormCreateChat/FormCreateChat.schema";
 
 import styles from "./FormCreateChat.module.css";
-import { ThemeContext } from "src/shared/themes";
 
 export type FormCreateChatProps = {
   isOpen: boolean;
@@ -64,24 +64,7 @@ export const FormCreateChat = observer(
               onSubmit={(values, { setSubmitting }) => {
                 console.log(values);
               }}
-              validationSchema={Yup.object({
-                title: Yup.string().required("Обязательное поле"),
-                colorTheme: Yup.string()
-                  .oneOf(["blue", "red", "blue", "green"], "Не выбран цвет")
-                  .required("Обязательное поле"),
-                tags: Yup.array(),
-                tagsProvider: Yup.string()
-                  .ensure()
-                  .min(3, "Длина тега должна быть хотя бы 3 символа")
-                  .transform((value) => (!!value ? value : null))
-                  .test(
-                    "unique",
-                    "Такой тег уже есть в вашем списке",
-                    (value, context) =>
-                      // @ts-ignore
-                      !context.resolve(Yup.ref("tags")).includes(value)
-                  ),
-              })}
+              validationSchema={schema}
             >
               {(props) => (
                 <Form

@@ -1,7 +1,8 @@
 import React, { ReactElement, useContext } from "react";
-import styles from "./Button.module.css";
+
 import { ThemeContext } from "src/shared/themes";
-import { motion } from "framer-motion";
+
+import styles from "./Button.module.css";
 
 export type ButtonProps = {
   className?: string;

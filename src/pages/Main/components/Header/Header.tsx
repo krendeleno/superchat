@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 import ChatStore from "src/stores/main.store";
 import SvgLogo from "src/assets/Logo";
 import { Logout } from "src/assets/icons";
+import { ThemeContext } from "src/shared/themes";
+
+import { ThemeSwitch } from "src/pages/Main/components/Header/components/ThemeSwitch";
 
 import styles from "./Header.module.css";
-import { ThemeContext } from "src/shared/themes";
-import { Switch } from "@mui/material";
-import { ThemeSwitch } from "src/pages/Main/components/Header/components/ThemeSwitch";
 
 export const Header = observer(() => {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -22,7 +22,7 @@ export const Header = observer(() => {
         color={theme.logo}
       />
       <div className={styles["Header-Logout"]}>
-        <ThemeSwitch onChange={toggleTheme} appTheme={theme} />
+        <ThemeSwitch onChange={toggleTheme} apptheme={theme} />
         <span className={styles["Header-User"]}>{ChatStore.user}</span>
         <Link to="login">
           <Logout />

@@ -2,14 +2,15 @@ import React, { useContext } from "react";
 import { observer } from "mobx-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
 
 import { Button } from "src/shared/components/Button";
 import { TextInput } from "src/shared/components/TextInput";
 import SvgLogo from "src/assets/Logo";
+import { ThemeContext } from "src/shared/themes";
+
+import { schema } from "src/pages/Register/components/FormRegister";
 
 import styles from "./FormRegister.module.css";
-import { ThemeContext } from "src/shared/themes";
 
 export const FormRegister = observer(() => {
   let navigate = useNavigate();
@@ -33,13 +34,7 @@ export const FormRegister = observer(() => {
           onSubmit={(values, { setSubmitting }) => {
             console.log(values);
           }}
-          validationSchema={Yup.object({
-            login: Yup.string().required("Обязательное поле"),
-            password: Yup.string().required("Обязательное поле"),
-            passwordRepeat: Yup.string()
-              .oneOf([Yup.ref("password")], "Пароли не совпадают")
-              .required("Обязательное поле"),
-          })}
+          validationSchema={schema}
         >
           {(props) => (
             <Form

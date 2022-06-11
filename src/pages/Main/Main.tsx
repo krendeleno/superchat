@@ -4,6 +4,8 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { observer } from "mobx-react";
 
+import { ThemeContext } from "src/shared/themes";
+
 import { CustomDragLayer } from "src/pages/Main/components/CustomDragLayer/";
 import { ChatList } from "src/pages/Main/components/ChatList/";
 import { TagList } from "src/pages/Main/components/TagList/";
@@ -11,7 +13,6 @@ import { Header } from "src/pages/Main/components/Header";
 import { AddChatButton } from "src/pages/Main/components/AddChatButton";
 
 import styles from "src/pages/Main/Main.module.css";
-import { ThemeContext } from "src/shared/themes";
 
 export const Main = observer(() => {
   const { theme } = useContext(ThemeContext);
