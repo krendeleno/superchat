@@ -29,7 +29,6 @@ export const ChatTimer = observer(({ id }: ChatTimerProps) => {
     return action(() => {
       ChatStore.chatArray[id].ttl =
         ChatStore.chatArray[id].ttl - (Date.now() - now);
-      console.log(ChatStore.chatArray[id].ttl);
     });
   }, []);
 
