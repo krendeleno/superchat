@@ -11,6 +11,7 @@ import { Arrow } from "src/assets/icons";
 
 import styles from "./ChatCard.module.css";
 import TextareaAutosize from "react-textarea-autosize";
+import { ChatTimer } from "src/pages/Main/components/ChatCard/components/ChatTimer";
 export function ChatCard({
   id,
   setInputFieldFocused,
@@ -20,7 +21,7 @@ export function ChatCard({
   setInputFieldFocused?: React.Dispatch<React.SetStateAction<boolean>>;
   isDragging?: boolean;
 }) {
-  const { title, tags, color, creator, isOpen } = ChatStore.chatArray[id];
+  const { title, tags, color, creator, isOpen, ttl } = ChatStore.chatArray[id];
 
   const handleCloseChat = action(() => {
     ChatStore.chatArray[id].isOpen = false;
@@ -88,16 +89,24 @@ export function ChatCard({
           />
 
           {!isOpen && (
-            <Button
-              className={styles["ChatCard-Button"]}
-              style={{
-                color: themes[color].text,
-                backgroundColor: "rgba(255,255,255,0.6)",
-              }}
-              onClick={handleOpenChat}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className={styles["ChatCard-LowerPart"]}
             >
-              <span>открыть чат</span>
-            </Button>
+              <ChatTimer ttl={ttl} color={color} />
+              <Button
+                className={styles["ChatCard-Button"]}
+                style={{
+                  color: themes[color].text,
+                  backgroundColor: "rgba(255,255,255,0.6)",
+                }}
+                onClick={handleOpenChat}
+              >
+                <span>открыть чат</span>
+              </Button>
+            </motion.div>
           )}
         </motion.div>
         {isOpen && (
@@ -119,13 +128,20 @@ export function ChatCard({
           </div>
         )}
         {isOpen && (
-          <Button
-            className={styles["ChatCard-Button"]}
-            style={{ color: themes[color].text }}
-            onClick={handleCloseChat}
+          <motion.div
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={styles["ChatCard-LowerPart"]}
           >
-            <span>закрыть чат</span>
-          </Button>
+            <ChatTimer ttl={ttl} color={color} />
+            <Button
+              className={styles["ChatCard-Button"]}
+              style={{ color: themes[color].text }}
+              onClick={handleCloseChat}
+            >
+              <span>закрыть чат</span>
+            </Button>
+          </motion.div>
         )}
       </motion.div>
     </AnimateSharedLayout>

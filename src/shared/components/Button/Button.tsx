@@ -1,7 +1,7 @@
 import React, { ReactElement, useContext } from "react";
 import styles from "./Button.module.css";
 import { ThemeContext } from "src/shared/themes";
-import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 export type ButtonProps = {
   className?: string;
@@ -20,16 +20,13 @@ export const Button = ({
   const { theme } = useContext(ThemeContext);
 
   return (
-    <motion.button
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+    <button
       className={[styles["Button"], className].join(" ")}
       onClick={onClick}
       style={{ background: theme.button }}
       {...rest}
     >
       {children}
-    </motion.button>
+    </button>
   );
 };

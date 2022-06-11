@@ -61,7 +61,7 @@
   font-weight: var(--font-weight-manrope-extrabold);
 
   border-radius: 10px;
-  background-color: var(--white);
+  background-color: rgba(255,255,255,0.6);
   padding: 1px 6px;
   cursor: pointer;
   line-height: 20px;
@@ -79,6 +79,8 @@
   padding: 5px;
   box-sizing: border-box;
   user-select: text;
+  background-color: rgba(255,255,255,0.6);
+
 }
 
 .ChatCard-Send {
@@ -92,4 +94,13 @@
 .ChatCard-SendIcon {
   cursor: pointer;
   width: 28px;
+}
+
+.ChatCard-LowerPart {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 5px;
 }
