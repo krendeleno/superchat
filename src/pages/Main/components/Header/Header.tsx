@@ -18,8 +18,8 @@ export const Header = observer(() => {
     <div className={styles["Header"]} style={{ backgroundColor: theme.header }}>
       <SvgLogo
         className={styles["Header-Logo"]}
-        viewBox="600 -45 100 180"
-        color={theme.logo}
+        viewBox="-10 10 400 40"
+        colorText={theme.logo}
       />
       <div className={styles["Header-Logout"]}>
         <ThemeSwitch onChange={toggleTheme} apptheme={theme} />

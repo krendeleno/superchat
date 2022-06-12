@@ -28,7 +28,7 @@ export const FormRegister = observer(() => {
       style={{ backgroundColor: theme.form }}
     >
       <div className={styles["FormRegister-Wrapper"]}>
-        <SvgLogo color={theme.logo} />
+        <SvgLogo colorText={theme.logo} />
         <Formik
           initialValues={{ login: "", password: "", repeatPassword: "" }}
           onSubmit={(values, { setSubmitting }) => {

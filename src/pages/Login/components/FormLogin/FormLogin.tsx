@@ -27,7 +27,7 @@ export const FormLogin = observer(() => {
       style={{ backgroundColor: theme.form }}
     >
       <div className={styles["FormLogin-Wrapper"]}>
-        <SvgLogo color={theme.logo} />
+        <SvgLogo colorText={theme.logo} />
         <Formik
           initialValues={{ login: "", password: "" }}
           onSubmit={(values, { setSubmitting }) => {
