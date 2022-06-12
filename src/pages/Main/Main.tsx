@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { observer } from "mobx-react";
+import { Helmet } from "react-helmet";
 
 import { ThemeContext } from "src/shared/themes";
 
@@ -19,6 +20,10 @@ export const Main = observer(() => {
 
   return (
     <div className={styles["Main"]} style={{ background: theme.background }}>
+      <Helmet>
+        <title>24chat</title>
+        <meta name="description" content="Приложение с чатами на 24 часа" />
+      </Helmet>
       <Header />
       <TagList />
       <AddChatButton />
